@@ -1,28 +1,36 @@
 <template>
-  <div id="app">
-    <img src="./assets/logo.png">
-    <HelloWorld/>
-  </div>
+    <div id="app">
+        <surli-input :surli="surli" :user="user"></surli-input>
+        <user-input :surli="surli" :user="user"></user-input>
+    </div>
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld'
+  import Surli from './core/Surli'
+  import User from './core/User'
 
-export default {
-  name: 'app',
-  components: {
-    HelloWorld
+  import SurliInput from './components/SurliInput'
+  import UserInput from './components/UserInput'
+
+  export default {
+    name: 'app',
+    components: {
+      SurliInput,
+      UserInput
+    },
+    data () {
+      const user = new User()
+      const surli = new Surli(user)
+
+      return {
+        surli,
+        user
+      }
+    }
   }
-}
 </script>
 
 <style>
-#app {
-  font-family: 'Avenir', Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
-}
+    #app {
+    }
 </style>
