@@ -1,10 +1,8 @@
 import { listenToUser, phraseIsAffirmative } from './SpeechRecognition'
+import { speak } from './SpeechSynthesis'
 
 function say (sentence) {
-  return new Promise(resolve => {
-    console.log(sentence)
-    resolve()
-  })
+  return speak(sentence)
 }
 
 function listen () {
