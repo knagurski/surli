@@ -4,7 +4,7 @@
             Select a voice
             <select @change="changeVoice">
                 <option></option>
-                <option v-for="voice in voices"
+                <option v-for="voice in filteredVoices"
                         :key="voice.voiceURI"
                         :value="voice.voiceURI"
                         :selected="selectedVoice === voice">{{ voice.name }} ({{voice.lang}})
@@ -19,12 +19,17 @@
 
   export default {
     name: 'voice-picker',
-    props: [
-      'voices'
-    ],
+    props: {
+      voices: Array
+    },
     data () {
       return {
         selectedVoice: null
+      }
+    },
+    computed: {
+      filteredVoices () {
+        return this.voices.filter(voice => /^en/.test(voice.lang))
       }
     },
     mounted () {

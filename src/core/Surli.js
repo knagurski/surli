@@ -3,7 +3,7 @@ import { say } from './SpeechSynthesis'
 
 async function askForName () {
   function askLoop () {
-    return ask('What\'s your name?').then(response => confirm(response, `You said: ${response}. Is that correct?`)).catch(askLoop)
+    return ask('What\'s your name?').then(response => confirm(response, `So, your name is "${response}"? Is that right?`)).catch(askLoop)
   }
 
   const name = await askLoop()
@@ -14,14 +14,16 @@ async function askForName () {
 export default class Surli {
   constructor (user) {
     this.user = user
-    this.speaking = speechSynthesis.speaking
+    this.speaking = false
+    this.listening = false
+    this.lastThingSpoken = ''
+    this.lastThingHeard = ''
   }
 
   async init () {
     if (!this.initialised) {
       this.initialised = true
       await this.welcome()
-      console.log('after welcome')
       await this.leaveReview()
     }
   }

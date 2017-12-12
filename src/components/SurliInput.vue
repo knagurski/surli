@@ -1,6 +1,6 @@
 <template>
     <div class="surli-input">
-
+        <p>{{ surli.lastThingSpoken }}</p>
     </div>
 </template>
 
@@ -15,7 +15,7 @@
       user: User
     },
     mounted () {
-      this.surli.init()
+//      this.surli.init()
     }
   }
 </script>

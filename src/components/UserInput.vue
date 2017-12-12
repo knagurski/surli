@@ -1,6 +1,6 @@
 <template>
     <div class="user-input">
-        <div class="transcript"></div>
+        <p>{{ surli.lastThingHeard }}</p>
     </div>
 </template>
 

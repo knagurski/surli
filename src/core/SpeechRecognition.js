@@ -1,4 +1,5 @@
 import { speak } from './SpeechSynthesis'
+import event from './event'
 import wordsToNumber from 'words-to-numbers'
 
 const recognition = getSpeechRecognition()
@@ -14,6 +15,7 @@ function getSpeechRecognition () {
 
 export function listen () {
   return new Promise(resolve => {
+    event.$emit('listen:start')
     console.log('Starting to listen')
     recognition.start()
 
@@ -24,6 +26,7 @@ export function listen () {
         console.log('Stopping listening')
         recognition.stop()
         recognition.removeEventListener('result', transcribe)
+        event.$emit('listen:stop', phrase)
         console.info(phrase)
         setTimeout(() => resolve(phrase), 0)
       }

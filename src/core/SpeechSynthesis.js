@@ -1,3 +1,5 @@
+import event from './event'
+
 export function getVoices () {
   return speechSynthesis.getVoices()
 }
@@ -14,8 +16,10 @@ export function speak (phrase) {
 
   return new Promise(resolve => {
     console.log(utterance)
+    event.$emit('speak:start', phrase)
     utterance.addEventListener('end', () => {
       console.log('speaking end')
+      event.$emit('speak:stop')
       resolve()
     })
     console.log('speaking start', phrase)
