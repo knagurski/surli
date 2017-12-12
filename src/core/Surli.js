@@ -72,7 +72,7 @@ export default class Surli {
 
     await say('Ok, so let me just confirm this.')
 
-    const wouldWouldnt = wouldRecommend ? 'would' : "wouldn't"
+    const wouldWouldnt = wouldRecommend ? 'would' : 'wouldn\'t'
 
     await confirm('', `You ${wouldWouldnt} recommend this to a friend because "${reason}". Is that correct?`).then(() => say('Cool')).catch(this.recommend.bind(this))
   }

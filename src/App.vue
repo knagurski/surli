@@ -33,7 +33,7 @@
         voices: getVoices()
       }
     },
-    beforeMount() {
+    beforeMount () {
       speechSynthesis.addEventListener('voiceschanged', () => {
         this.voices = getVoices()
       })
