@@ -1,14 +1,29 @@
-export let voices = []
+export function getVoices () {
+  return speechSynthesis.getVoices()
+}
+
+let currentVoice = null
+
+export function setVoice (voice) {
+  currentVoice = voice
+}
 
 export function speak (phrase) {
   const utterance = new SpeechSynthesisUtterance(phrase)
-
-  if (voices.length < 1) {
-    voices = speechSynthesis.getVoices()
-  }
+  utterance.voice = currentVoice
 
   return new Promise(resolve => {
-    utterance.addEventListener('end', resolve)
+    console.log(utterance)
+    utterance.addEventListener('end', () => {
+      console.log('speaking end')
+      resolve()
+    })
+    console.log('speaking start', phrase)
     speechSynthesis.speak(utterance)
   })
+}
+
+export async function say (sentence) {
+  await speak(sentence)
+  console.log('should only move on now')
 }

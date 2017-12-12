@@ -15,7 +15,7 @@
       user: User
     },
     mounted () {
-      this.surli.welcome(this.user)
+      this.surli.init()
     }
   }
 </script>
