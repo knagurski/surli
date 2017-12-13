@@ -93,10 +93,6 @@
 </script>
 
 <style lang="scss">
-    * {
-        box-sizing: border-box;
-    }
-
     .surli-sprite {
         &-wrapper {
             background-color: black;
@@ -106,7 +102,6 @@
             align-items: center;
         }
 
-        --highlightColor: hotpink;
         --boxShadowColor: var(--highlightColor);
         --boxShadowDepth: 3em;
         --sizeMultiplier: 10px;

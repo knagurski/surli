@@ -59,6 +59,8 @@
         this.surli.listening = false
         this.surli.lastThingHeard = phrase
       })
+
+      setTimeout(() => this.surli.init(), 1000)
     }
   }
 </script>
@@ -75,6 +77,7 @@
         margin: 0;
         padding: 0;
         background-color: black;
+        --highlightColor: hotpink;
     }
 
     #app {
