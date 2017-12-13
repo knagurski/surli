@@ -1,6 +1,6 @@
 <template>
     <div id="app">
-        <voice-picker :voices="voices"></voice-picker>
+        <voice-picker :voices="voices" :selected-voice="selectedVoice"></voice-picker>
         <surli-sprite :surli="surli"></surli-sprite>
         <surli-input :surli="surli" :user="user"></surli-input>
         <user-input :surli="surli" :user="user"></user-input>
@@ -33,17 +33,30 @@
       return {
         surli,
         user,
-        voices: getVoices()
+        voices: getVoices(),
+        selectedVoice: null
       }
     },
     beforeMount () {
+      this.storage = localStorage
+
       speechSynthesis.addEventListener('voiceschanged', () => {
         this.voices = getVoices()
+
+        if (this.storage.voice) {
+          const selectedVoice = this.voices.find(voice => voice.voiceURI === this.storage.voice)
+
+          if (selectedVoice) {
+            event.$emit('voice-picker:voice-changed', selectedVoice)
+          }
+        }
       })
     },
     mounted () {
       event.$on('voice-picker:voice-changed', newVoice => {
         setVoice(newVoice)
+        this.storage.voice = newVoice.voiceURI
+        this.selectedVoice = newVoice
       })
 
       event.$on('speak:start', phrase => {

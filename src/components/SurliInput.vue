@@ -13,7 +13,7 @@
     props: {
       surli: Surli,
       user: User
-    },
+    }
   }
 </script>
 

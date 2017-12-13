@@ -49,7 +49,6 @@
       function autoBlink () {
         const wait = Math.ceil(Math.random() * 10000)
 
-        console.log(`Blinking in ${wait}ms`)
         setTimeout(() => {
           blink()
           autoBlink()

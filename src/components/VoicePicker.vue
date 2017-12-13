@@ -20,12 +20,8 @@
   export default {
     name: 'voice-picker',
     props: {
-      voices: Array
-    },
-    data () {
-      return {
-        selectedVoice: null
-      }
+      voices: Array,
+      selectedVoice: window.SpeechSynthesisVoice
     },
     computed: {
       filteredVoices () {
@@ -37,8 +33,10 @@
     },
     methods: {
       changeVoice (newVoice) {
-        this.selectedVoice = this.voices.find(voice => voice.voiceURI === newVoice.target.value)
-        event.$emit('voice-picker:voice-changed', this.selectedVoice)
+        event.$emit(
+          'voice-picker:voice-changed',
+          this.voices.find(voice => voice.voiceURI === newVoice.target.value)
+        )
       }
     }
   }
