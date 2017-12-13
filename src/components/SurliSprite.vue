@@ -66,7 +66,7 @@
         }, 100)
       },
       eyePoke ({target}) {
-        say("Hey! Don't do that!")
+        say('Hey! Don\'t do that!')
 
         target.style.height = 0
         setTimeout(() => {

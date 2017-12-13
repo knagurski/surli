@@ -50,7 +50,7 @@
 
         select {
             border: none;
-            background: rgba(255,255,255,.25);
+            background: rgba(255, 255, 255, .25);
             color: var(--highlightColor);
             font-size: 1em;
             padding: 25em .5em;
