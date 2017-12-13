@@ -1,6 +1,7 @@
 import { speak } from './SpeechSynthesis'
 import event from './event'
 import wordsToNumber from 'words-to-numbers'
+import { checkForJokeRequest, tellJoke } from './Jokes'
 
 const recognition = getSpeechRecognition()
 
@@ -60,7 +61,13 @@ export function listen () {
 }
 
 export function ask (question) {
-  return speak(question).then(listen)
+  return speak(question).then(listen).then(response => {
+    if (checkForJokeRequest(response)) {
+      return tellJoke().then(() => ask(question))
+    }
+
+    return response
+  })
 }
 
 export function askNumber (question) {

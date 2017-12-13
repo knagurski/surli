@@ -16,6 +16,8 @@ export function speak (phrase) {
 
   return new Promise(resolve => {
     event.$emit('speak:start', phrase)
+    console.log(utterance)
+
     utterance.addEventListener('end', () => {
       event.$emit('speak:stop')
       resolve()
