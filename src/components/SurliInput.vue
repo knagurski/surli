@@ -26,5 +26,6 @@
         font-size: 2em;
         text-shadow: 0 2px 5px var(--highlightColor);
         text-align: center;
+        height: 200px;
     }
 </style>

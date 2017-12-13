@@ -20,7 +20,7 @@ function getRandomCantHearPhrase () {
     'Whoops, I wasn\'t paying attention. What did you say?',
     'All I heard was blah blah blah. Say again',
     'Hey, is this thing on?',
-    'I feel like you might be ignoring me',
+    'I feel like you might be ignoring me'
   ]
 
   return phrases[Math.floor(Math.random() * phrases.length)]
@@ -29,7 +29,6 @@ function getRandomCantHearPhrase () {
 export function listen () {
   return new Promise(resolve => {
     event.$emit('listen:start')
-    console.log('Starting to listen')
     recognition.start()
 
     let heardAnything = false
@@ -49,11 +48,9 @@ export function listen () {
       event.$emit('listen:heard', phrase)
 
       if (results[0].isFinal) {
-        console.log('Stopping listening')
         recognition.stop()
         recognition.removeEventListener('result', transcribe)
         event.$emit('listen:stop', phrase)
-        console.info(phrase)
         setTimeout(() => resolve(phrase), 0)
       }
     }

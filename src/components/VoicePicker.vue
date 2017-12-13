@@ -28,9 +28,6 @@
         return this.voices.filter(voice => /^en/.test(voice.lang))
       }
     },
-    mounted () {
-      console.log(this.voices)
-    },
     methods: {
       changeVoice (newVoice) {
         event.$emit(
@@ -42,6 +39,22 @@
   }
 </script>
 
-<style scoped>
+<style lang="scss">
+    .voice-picker {
+        position: fixed;
+        bottom: 0;
+        border-top: 1px solid var(--highlightColor);
+        padding: 1em;
+        width: 100vw;
+        text-align: center;
 
+        select {
+            border: none;
+            background: rgba(255,255,255,.25);
+            color: var(--highlightColor);
+            font-size: 1em;
+            padding: 25em .5em;
+            margin: 0;
+        }
+    }
 </style>

@@ -40,10 +40,11 @@
         text-shadow: 0 2px 10px white;
         opacity: 1;
         text-align: center;
+        height: 200px;
 
         &--fade {
             opacity: 0;
-            transition: 10s opacity ease-out;
+            transition: 5s opacity ease-out;
         }
     }
 </style>

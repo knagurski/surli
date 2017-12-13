@@ -144,6 +144,7 @@
         &--listening {
             --boxShadowColor: white;
             --boxShadowDepth: 5em;
+            animation-play-state: paused;
         }
 
         @media screen and (min-width: 350px) {

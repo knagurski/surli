@@ -1,14 +1,12 @@
 import { ask, askNumber, confirm, phraseIsAffirmative } from './SpeechRecognition'
 import { say } from './SpeechSynthesis'
 
-async function askForName () {
+function askForName () {
   function askLoop () {
     return ask('What\'s your name?').then(response => confirm(response, `So, your name is "${response}"? Is that right?`)).catch(askLoop)
   }
 
-  const name = await askLoop()
-
-  return name
+  return askLoop()
 }
 
 export default class Surli {

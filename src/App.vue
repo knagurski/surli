@@ -1,9 +1,9 @@
 <template>
     <div id="app">
-        <voice-picker :voices="voices" :selected-voice="selectedVoice"></voice-picker>
         <surli-sprite :surli="surli"></surli-sprite>
         <surli-input :surli="surli" :user="user"></surli-input>
         <user-input :surli="surli" :user="user"></user-input>
+        <voice-picker :voices="voices" :selected-voice="selectedVoice"></voice-picker>
     </div>
 </template>
 
@@ -97,6 +97,9 @@
 
     #app {
         display: flex;
+        height: 100vh;
         flex-direction: column;
+        align-items: center;
+        justify-content: center;
     }
 </style>
