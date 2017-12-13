@@ -106,5 +106,8 @@ export default class Surli {
     await say('Give my best to the wife and kids')
     await say('And, as someone smarter than me once said...')
     await say('Be excellent to each other!')
+    await say('Oh and you should totally vote for this!')
+    await say('I mean... come on... it was pretty cool')
+    await say('Just saying')
   }
 }
