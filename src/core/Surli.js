@@ -24,7 +24,17 @@ export default class Surli {
     if (!this.initialised) {
       this.initialised = true
       await this.welcome()
+
+      const goForIt = await ask(`Hey, ${this.user.name}, since we're friends and all. Do you fancy leaving a review?`).then(answer => phraseIsAffirmative(answer))
+
+      if (goForIt) {
+        await say('Awesome, let\'s do this thing')
+      } else {
+        await say('Well, tough, that\'s what you\'re here for!')
+      }
+
       await this.leaveReview()
+      await this.allDone()
     }
   }
 
@@ -34,20 +44,11 @@ export default class Surli {
     }
 
     await say(`Well hello there, ${this.user.name}!`)
-    await say('This sure is a nice computer you have')
+    await say('This sure is a nice computer!')
   }
 
   async leaveReview () {
-    const goForIt = await ask(`Hey, ${this.user.name}, since we're friends and all. Do you fancy leaving a review?`).then(answer => phraseIsAffirmative(answer))
-
-    if (goForIt) {
-      await say('Awesome, let\'s do this thing')
-    } else {
-      await say('Well, tough, that\'s what you\'re here for!')
-    }
-
     const stars = await askNumber('So, out of 5, how many stars would you give this?')
-    console.log(stars)
 
     if (stars >= 5) {
       await say(`Wow, ${stars} stars, you must love it!`)
@@ -96,8 +97,16 @@ export default class Surli {
     if (correct) {
       return say('Cool!')
     } else {
-      await say('Well, that\'s a bummer. I suppose we\'d better start again')
+      await say('Well, that\'s a bummer')
+      await say('I suppose we\'d better start again')
       return this.leaveReview()
     }
+  }
+
+  async allDone () {
+    await say(`Well, ${this.user.name}, it looks like we're all done here`)
+    await say('Give my best to the wife and kids')
+    await say('And, as someone smarter than me once said...')
+    await say('Be excellent to each other!')
   }
 }
