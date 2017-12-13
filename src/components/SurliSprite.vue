@@ -157,7 +157,7 @@
 
     @keyframes tilt {
         from {
-            transform: rotate(-5deg);
+            transform: rotate(-2deg);
         }
 
         to {
