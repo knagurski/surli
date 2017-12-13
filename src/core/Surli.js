@@ -72,15 +72,13 @@ export default class Surli {
 
   async recommend () {
     const wouldRecommend = await ask('Would you recommend this to a friend?').then(answer => phraseIsAffirmative(answer))
-    const reason = await ask('Any particular reason for that?')
+    const reason = await ask('And why is that?').then(reason => reason.replace(/^\s?(cuz|because|coz)/, '').trim())
 
-    await say('Ok, so let me just confirm this.')
-
-    const wouldWouldnt = wouldRecommend ? 'would' : 'wouldn\'t'
+    await say('Ok, so let me just confirm this...')
 
     return confirm(
       {wouldRecommend, reason},
-      `You ${wouldWouldnt} recommend this to a friend because "${reason}". Is that correct?`
+      `You ${wouldRecommend ? 'would' : 'wouldn\'t'} recommend this to a friend because "${reason}". Is that correct?`
     ).catch(this.recommend.bind(this))
   }
 
