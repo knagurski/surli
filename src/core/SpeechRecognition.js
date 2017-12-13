@@ -22,6 +22,8 @@ export function listen () {
     function transcribe ({results}) {
       const phrase = [...results].map(result => result[0]).map(result => result.transcript).join('')
 
+      event.$emit('listen:heard', phrase)
+
       if (results[0].isFinal) {
         console.log('Stopping listening')
         recognition.stop()

@@ -71,6 +71,8 @@
       }).$on('listen:stop', phrase => {
         this.surli.listening = false
         this.surli.lastThingHeard = phrase
+      }).$on('listen:heard', phrase => {
+        this.surli.lastThingHeard = phrase
       })
 
       setTimeout(() => this.surli.init(), 1000)

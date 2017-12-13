@@ -54,7 +54,7 @@ export default class Surli {
     } else if (stars >= 3) {
       await say(`Cool, so ${stars} stars. Nice!`)
     } else if (stars > 0) {
-      await say(`Ok, ${stars}, that's not great.`)
+      await say(`Ok, ${stars}, that's not great`)
     } else {
       await say('Dang! Well... um... well this is awkward')
     }
@@ -62,10 +62,13 @@ export default class Surli {
     await say('Now lets go into some detail')
 
     if (stars > 4 || stars < 2) {
-      await say('I think I already know the answer to this, but I gotta ask.')
+      await say('I think I already know the answer to this, but I gotta ask')
     }
 
-    await this.recommend()
+    const recommendation = await this.recommend()
+    recommendation.stars = stars
+
+    return this.confirmReview(recommendation)
   }
 
   async recommend () {
@@ -76,6 +79,25 @@ export default class Surli {
 
     const wouldWouldnt = wouldRecommend ? 'would' : 'wouldn\'t'
 
-    await confirm('', `You ${wouldWouldnt} recommend this to a friend because "${reason}". Is that correct?`).then(() => say('Cool')).catch(this.recommend.bind(this))
+    return confirm(
+      {wouldRecommend, reason},
+      `You ${wouldWouldnt} recommend this to a friend because "${reason}". Is that correct?`
+    ).catch(this.recommend.bind(this))
+  }
+
+  async confirmReview (review) {
+    await say('Right, so let\'s just go over this one more time and then we\'re done')
+
+    await say(`So, you gave this ${review.stars} stars`)
+    await say(`You'd ${review.wouldRecommend ? 'totally' : 'not'} recommend this to a friend`)
+    await say(`And that was because "${review.reason}"`)
+    const correct = await ask('Does that sound right?').then(response => phraseIsAffirmative(response))
+
+    if (correct) {
+      return say('Cool!')
+    } else {
+      await say('Well, that\'s a bummer. I suppose we\'d better start again')
+      return this.leaveReview()
+    }
   }
 }
