@@ -16,7 +16,8 @@ const jokes = [
   joke4,
   joke5,
   joke6,
-  joke7
+  joke7,
+  joke8
 ]
 
 function getRandomJoke () {
@@ -80,4 +81,9 @@ async function joke6 () {
 async function joke7 () {
   await say('What do computers and air conditioners have in common?')
   return say('They both become useless when you open Windows')
+}
+
+async function joke8 () {
+  await say('What do you call a cheese shop in the middle east?')
+  return say('Cheeses of Nazareth')
 }
