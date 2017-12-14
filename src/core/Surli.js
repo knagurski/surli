@@ -21,6 +21,7 @@ export default class Surli {
   async init () {
     if (!this.initialised) {
       this.initialised = true
+
       await this.welcome()
 
       const goForIt = await ask(`Hey, ${this.user.name}, since we're friends and all. Do you fancy leaving a review?`).then(answer => phraseIsAffirmative(answer))
@@ -107,5 +108,28 @@ export default class Surli {
     await say('Oh and you should totally vote for this!')
     await say('I mean... come on... it was pretty cool')
     await say('Just saying')
+    await say('And finally...')
+    return dontStop()
   }
+}
+
+let believing
+
+function dontStop () {
+  if (!believing) {
+    believing = document.createElement('audio')
+    believing.src = '/static/dontstop.m4a'
+  }
+
+  return new Promise(resolve => {
+    function onComplete () {
+      believing.removeEventListener('ended', onComplete)
+      resolve()
+    }
+
+    believing.addEventListener('ended', onComplete)
+
+    believing.currentTime = 0
+    believing.play()
+  })
 }
