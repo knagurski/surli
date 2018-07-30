@@ -1,0 +1,1224 @@
+<!DOCTYPE html>
+<!-- saved from url=(0051)https://sampleclub.sennheiser.com/member/dashboard# -->
+<html lang="en" style=""
+      class=" js flexbox flexboxlegacy canvas canvastext webgl no-touch geolocation postmessage websqldatabase indexeddb hashchange history draganddrop websockets rgba hsla multiplebgs backgroundsize borderimage borderradius boxshadow textshadow opacity cssanimations csscolumns cssgradients cssreflections csstransforms csstransforms3d csstransitions fontface generatedcontent video audio localstorage sessionstorage webworkers applicationcache svg inlinesvg smil svgclippaths js canvas canvastext geolocation localstorage">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+    <title>Sample Club</title>
+    <meta name="robots" content="noindex, nofollow">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="shortcut icon" href="https://s3.amazonaws.com/sampling-photos-prod/photos/sennheiseruk_favicon.ico">
+    <link rel="stylesheet" type="text/css" href="snapshot/bootstrap-select.min.css">
+    <link href="snapshot/bootstrap.min.css" rel="stylesheet">
+
+    <link rel="stylesheet" href="snapshot/jquery-ui.css">
+    <link rel="stylesheet" href="snapshot/ladda-themeless.min.css">
+    <link href="snapshot/jquery-ui-1.10.3.custom.min.css" rel="stylesheet">
+    <link href="snapshot/DT_bootstrap.css" rel="stylesheet" type="text/css">
+    <link href="snapshot/bootstrap-datetimepicker.min.css" rel="stylesheet" type="text/css">
+    <link href="snapshot/default.css" rel="stylesheet">
+
+    <style type="text/css">
+
+        body {
+            background-color: #e1e1e1;
+        }
+
+        a, a:hover {
+            color: #000;
+        }
+
+        .pagination > .active > a,
+        .pagination > .active > span,
+        .pagination > .active > a:hover,
+        .pagination > .active > span:hover,
+        .pagination > .active > a:focus,
+        .pagination > .active > span:focus {
+            background-color: #000;
+            border-color: #000;
+        }
+
+        .navbar-default .navbar-nav > li > a {
+            color: #000 !important;
+        }
+
+        .navbar-default .navbar-nav > .dropdown > a .caret,
+        .navbar-default .navbar-nav > .dropdown > a:hover .caret {
+            border-top-color: #e1e1e1;
+            border-bottom-color: #e1e1e1;
+        }
+
+        .btn-default {
+            color: #333333;
+            background-color: #f0f0f0;
+            border: 1px solid #d2d2d2;
+        }
+
+        .btn-default:hover,
+        .btn-default:focus,
+        .btn-default:active,
+        .btn-default.active,
+        .open .dropdown-toggle.btn-default {
+            color: #333333;
+            background-color: #f0f0f0;
+            border: 1px solid #d2d2d2;
+        }
+
+        .btn-primary {
+            color: #fff;
+            background-color: #0096d6;
+            border: 1px solid #0096d6;
+        }
+
+        .btn-primary:hover,
+        .btn-primary:focus,
+        .btn-primary:active,
+        .btn-primary.active,
+        .open .dropdown-toggle.btn-primary {
+            color: #fff;
+            background-color: #0096d6;
+            border: 1px solid #0096d6;
+        }
+
+        .btn-primary.disabled, .btn-secondary.disabled, .btn-default.disabled, .btn-info.disabled {
+            color: #999999 !important;
+            background-color: #ffffff !important;
+            border: 1px solid #d2d2d2;
+        }
+
+        .btn-secondary {
+            color: #fff;
+            background-color: #0096d6;
+            border: 1px solid #0096d6;
+        }
+
+        .btn-secondary:hover,
+        .btn-secondary:focus,
+        .btn-secondary:active,
+        .btn-secondary.active,
+        .open .dropdown-toggle.btn-secondary {
+            color: #fff;
+            background-color: #0096d6;
+            border: 1px solid #0096d6;
+        }
+
+        footer > p {
+            color: #000 !important;
+        }
+
+        footer a {
+            color: #000 !important;
+            text-decoration: underline;
+        }
+    </style>
+
+    <script src="snapshot/jquery.min.js"></script>
+    <script src="snapshot/jquery-ui.min.js"></script>
+
+
+    <script type="text/javascript" src="snapshot/modernizr.min.js"></script>
+    <script type="text/javascript" src="snapshot/bootstrap-select.min.js"></script>
+    <script src="snapshot/bootstrap.min.js"></script>
+    <script src="snapshot/jquery.datatables-1.10.12.min.js"></script>
+    <script src="snapshot/datatables.fnSetFilteringDelay.js"></script>
+    <script src="snapshot/plugins.js"></script>
+    <script src="snapshot/global.js"></script>
+    <script src="snapshot/jquery.confirm.min.js"></script>
+    <script src="snapshot/spin.min.js"></script>
+    <style type="text/css"></style>
+    <script src="snapshot/ladda.min.js"></script>
+    <script src="snapshot/moment.js"></script>
+    <script src="snapshot/bootstrap-datetimepicker.min.js"></script>
+    <script src="snapshot/string.js"></script>
+    <script src="snapshot/jquery.sticky.js"></script>
+    <script src="snapshot/jquery.numeric.min.js"></script>
+    <script src="snapshot/fnStandingRedraw.js"></script>
+
+    <!-- localization for datepicker -->
+    <script src="snapshot/datepicker-en-GB.js"></script>
+
+    <!-- Color Picker -->
+    <script type="text/javascript" src="snapshot/eye.js"></script>
+    <script type="text/javascript" src="snapshot/utils.js"></script>
+
+
+    <!-- BEGIN Disallow other sites to load any Sampling pages within an iframe -->
+
+
+    <!-- Turn all datatable headers into anchors -->
+    <script type="text/javascript">
+      $.fn.dataTable.defaults.fnHeaderCallback = function (header) {
+        $(header).find('th').each(function (idx, elem) {
+          setTimeout(function () {
+            var ariaLabel = $(elem).attr('aria-label')
+            if (ariaLabel) {
+              $(elem).find('a').attr('aria-label', ariaLabel)
+            }
+            $(elem).removeAttr('tabindex')
+          }, 1)
+
+          if ($(elem).children(':first').is('a')) {
+            return
+          }
+
+          var html = $(elem).html()
+          var a = $('<a href="#sort" />').html(html)
+          $(elem).html(a.first())
+        })
+      }
+    </script>
+
+    <link media="all" rel="stylesheet" type="text/css" href="snapshot/screen.css">
+</head>
+<body id="" class="dashboard index member browserChrome browserChrome6" style="">
+<div class="container">
+
+
+    <div class="masthead row">
+        <div class="logo row">
+            <a href="https://sampleclub.sennheiser.com/">
+                <img src="snapshot/sennheiseruk_logo.png" alt="Sample Club" class="img-responsive">
+            </a>
+        </div>
+    </div>
+    <nav class="navbar navbar-default row member" role="navigation" id="nav">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-ex1-collapse">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand welcome-message" href="https://sampleclub.sennheiser.com/member/dashboard">
+                welcome Tiernan </a>
+
+        </div>
+        <div class="collapse navbar-collapse member navbar-ex1-collapse">
+            <ul class="nav navbar-nav">
+                <li class="active"><a href="https://sampleclub.sennheiser.com/member/dashboard">Dashboard</a></li>
+                <li class=""><a href="https://sampleclub.sennheiser.com/support/faqs">FAQs</a></li>
+                <li class=""><a href="https://sampleclub.sennheiser.com/legal/terms">Terms of Use</a></li>
+                <li class=""><a href="https://sampleclub.sennheiser.com/legal/guidelines">Writing Guidelines</a></li>
+                <li class="profile-dropdown ">
+                    <a href="https://sampleclub.sennheiser.com/products" class="dropdown-toggle"
+                       aria-label="your account shows more content" data-toggle="dropdown">Your Account<b
+                            class="caret"></b></a>
+                    <ul class="dropdown-menu">
+                        <li class="">
+                            <a href="https://sampleclub.sennheiser.com/member/profile">
+                                Update Your Profile</a>
+                        </li>
+                        <li class=""><a href="https://sampleclub.sennheiser.com/member/profile/update_password">Reset
+                            Your Password</a>
+                        </li>
+                        <li class=""><a href="https://sampleclub.sennheiser.com/member/profile/deactivate">Deactivate
+                            your account</a>
+                        </li>
+                        <li class=""><a href="https://sampleclub.sennheiser.com/support/contact">Contact Us</a></li>
+                        <li><a href="https://sampleclub.sennheiser.com/authenticate/logout">Log Out</a></li>
+                        <li class="close-dropdown">
+                            <a href="https://sampleclub.sennheiser.com/member/dashboard#">Close</a>
+                        </li>
+                    </ul>
+                </li>
+            </ul>
+        </div>
+    </nav>
+
+    <div class="content row">
+        <div tabindex="-1" class="alert alert-success fade in"><a class="close"
+                                                                  href="https://sampleclub.sennheiser.com/member/dashboard#"
+                                                                  data-dismiss="alert">×</a>You are now logged in as
+            MEMBER Tiernan
+        </div><!--alert-->
+        <header class="col-md-12">
+            <h1></h1>
+        </header>
+
+        <!--/.span-->
+        <div class="clearfix"></div>
+        <section class="col-xs-12">
+            <style>
+                .inline {
+                    display: inline;
+                }
+
+                /* customize focus indicator to fit inside form input select elements (dropdowns) */
+                #item-list_length_select:focus {
+                    outline-offset: 2px !important;
+                }
+
+            </style>
+
+            <script>
+              var reviewCounts = {
+                total: 1,
+                available: 1,
+                submitted: 0,
+              }
+
+              function incrementSubmittedReviewCount () {
+                if (reviewCounts.submitted < reviewCounts.available)
+                  reviewCounts.submitted++
+
+                document.getElementById('products-reviewed-count').innerText = reviewCounts.submitted
+                document.getElementById('products-not-reviewed-count').innerText =
+                  (reviewCounts.available - reviewCounts.submitted).toString()
+
+                document.getElementById('products-reviewed-percent').innerText =
+                  '(' + Math.round((reviewCounts.submitted / reviewCounts.total) * 100) + '%)'
+              }
+            </script>
+            <div>
+                <div class="members-dashboard-photos-video">
+                    <div class="col-md-4">
+                        <h1>
+                            Your Activity </h1>
+                    </div>
+                    <div class="col-md-4">
+                        <h1>
+                            <small>
+                                0 photos submitted
+                            </small>
+                        </h1>
+                    </div>
+                    <div class="col-md-4">
+                        <h1>
+                            <small>
+                                0 videos submitted
+                            </small>
+                        </h1>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <table class="activity-campaign-report" id="products-data">
+                        <thead>
+                        <tr>
+                            <th colspan="2">
+                                Products
+                            </th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr>
+                            <td class="tag">PRODUCTS REQUESTED</td>
+                            <td class="num">1</td>
+                        </tr>
+                        <tr>
+                            <td class="tag">PRODUCTS SHIPPED</td>
+                            <td class="num">
+                                1 <span class="percent">(100%)</span> <!--fulfillment rate-->
+                            </td>
+                        </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <div class="col-md-6">
+                    <table class="activity-campaign-report" id="reviews-data">
+                        <thead>
+                        <tr>
+                            <th colspan="2">
+                                Reviews
+                            </th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr>
+                            <td class="tag">PRODUCTS REVIEWED</td>
+                            <td class="num">
+                                <span id="products-reviewed-count">0</span>
+                                <span class="percent" id="products-reviewed-percent">(0%)</span> <!--review rate--></td>
+                        </tr>
+                        <tr>
+                            <td class="tag">PRODUCTS NOT REVIEWED</td>
+                            <td class="num" id="products-not-reviewed-count">1</td>
+                        </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+            <h1>Your Products</h1>
+            <div id="item-list_wrapper" class="dataTables_wrapper form-inline no-footer">
+                <div class="row">
+                    <div class="col-md-12">
+                        <div id="item-list_filter" class="dataTables_filter input-group"><label>
+                            <div><label style="float: left" for="search-products">Search products</label></div>
+                            <input type="search" class="form-control" placeholder="" aria-controls="item-list"
+                                   id="search-products"></label><span class="input-group-btn"><button
+                                style="margin-top: 25px" class="btn btn-info" type="button">Search</button></span></div>
+                    </div>
+                </div>
+                <table id="item-list" class="table table-striped members_dashboard table-responsive dataTable no-footer"
+                       role="grid" aria-describedby="item-list_info" style="width: 1145px;">
+                    <thead>
+                    <tr role="row">
+                        <th class="sorting" aria-controls="item-list" rowspan="1" colspan="1" style="width: 463px;"
+                            aria-label="Product Name: activate to sort column ascending"><a
+                                href="https://sampleclub.sennheiser.com/member/dashboard#sort"
+                                aria-label="Product Name: activate to sort column ascending">Product Name</a></th>
+                        <th class="hidden-xs col-xs-2 sorting_desc" aria-controls="item-list" rowspan="1" colspan="1"
+                            style="width: 174px;" aria-sort="descending"
+                            aria-label="Requested: activate to sort column ascending"><a
+                                href="https://sampleclub.sennheiser.com/member/dashboard#sort"
+                                aria-label="Requested: activate to sort column ascending">Requested</a></th>
+                        <th class="col-xs-2 sorting" aria-controls="item-list" rowspan="1" colspan="1"
+                            style="width: 174px;" aria-label="Shipped Date: activate to sort column ascending"><a
+                                href="https://sampleclub.sennheiser.com/member/dashboard#sort"
+                                aria-label="Shipped Date: activate to sort column ascending">Shipped Date</a></th>
+                        <th class="col-xs-3 sorting" aria-controls="item-list" rowspan="1" colspan="1"
+                            style="width: 270px;" aria-label="Reviews: activate to sort column ascending"><a
+                                href="https://sampleclub.sennheiser.com/member/dashboard#sort"
+                                aria-label="Reviews: activate to sort column ascending">Reviews</a></th>
+                    </tr>
+                    </thead>
+                    <tbody>
+
+                    <tr role="row" class="odd">
+                        <td>
+                            <a href="https://sampleclub.sennheiser.com/member/dashboard#modal_0" data-toggle="modal"
+                               data-target="#modal_0">PXC 550</a>
+                            <!-- modal -->
+                            <div class="modal fade product-details" id="modal_0" aria-hidden="true" role="dialog"
+                                 tabindex="-1">
+                                <div class="modal-dialog">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <h3 class="info">More information</h3>
+                                        </div>
+                                        <div class="modal-body clearfix">
+                                            <div class="image">
+                                                <div style="background: url(https://assets.sennheiser.com/img/8371/product_detail_x2_desktop_PXC_550-sennheiser-01-1312.jpg) no-repeat center top; background-size: auto 100%; height: 100%;"></div>
+                                            </div>
+                                            <div class="description">
+                                                <h4>PXC 550</h4>
+                                                <p>The PXC 550 Wireless turns every journey into a first-class
+                                                    experience. Enjoy Sennheiser’s trademark high-quality sound and
+                                                    NoiseGard™ hybrid adaptive noise cancellation, all packed into a
+                                                    sleek foldable design. Control your sound using the ear cup-mounted
+                                                    touch control panel, and an intuitive voice prompt system. With up
+                                                    to 30 hours of battery life, the PXC 550 Wireless lets you travel
+                                                    around the world in comfort on a single charge.</p>
+                                            </div>
+                                        </div>
+                                        <div class="modal-footer">
+                                            <button type="button" class="btn btn-default" data-dismiss="modal">Close
+                                            </button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </td>
+                        <td class="hidden-xs sorting_1">6 Jul 2018</td>
+                        <td>16 Jul 2018<br></td>
+                        <td><a href="https://sampleclub.sennheiser.com/member/dashboard#" class="btn btn-primary btn-sm"
+                               data-product-id="PXC 550"
+                               data-campaign-id="bvsampling_sennheiser_product_offer_july_2018_2018076" data-brand=""
+                               onclick="submitReview($(this).data(&#39;product-id&#39;),$(this).data(&#39;campaign-id&#39;),$(this).data(&#39;brand&#39;));"><i
+                                class="glyphicon glyphicon-edit"></i> Write Review</a></td>
+                    </tr>
+                    </tbody>
+                </table>
+                <div class="row">
+                    <div class="col-md-3">
+                        <div class="dataTables_info" id="item-list_info" role="status" aria-live="polite">Showing 1 to 1
+                            of 1 entries
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <div class="dataTables_length" id="item-list_length"><label><select name="item-list_length"
+                                                                                            aria-controls="item-list"
+                                                                                            class=""
+                                                                                            id="item-list_length_select">
+                            <option value="25">25</option>
+                            <option value="50">50</option>
+                            <option value="100">100</option>
+                            <option value="500">500</option>
+                            <option value="750">750</option>
+                        </select> <span class="langhook" for="item-list_length_select">records per page</span></label>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="dataTables_paginate paging_bootstrap pagination" id="item-list_paginate">
+                            <ul class="pagination">
+                                <li class="prev disabled"><a href="https://sampleclub.sennheiser.com/member/dashboard#"
+                                                             aria-label="previous page">«</a></li>
+                                <li class="active"><a href="https://sampleclub.sennheiser.com/member/dashboard#"
+                                                      aria-label="page 1">1</a></li>
+                                <li class="next disabled"><a href="https://sampleclub.sennheiser.com/member/dashboard#"
+                                                             aria-label="next page">»</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+            <script>
+              $(document).ready(function () {
+
+                $('#refresh-products').click(function (e) {
+                  $('#item-list_processing').css('visibility', 'visible')
+                  $.post('https://sampleclub.sennheiser.com/member/dashboard/refresh_reviews').done(function () {
+                    var oTable = $('#item-list').dataTable()._fnAjaxUpdate()
+                  }).always(function () {
+                    $('#item-list_processing').css('visibility', 'hidden')
+                  })
+                })
+              })
+
+            </script>
+
+            <script>
+              // Ping interval reference
+              var ping = null
+
+              // Ping server every minute
+              function pingServer () {
+                ping = setInterval(function () {
+                  $.get('https://sampleclub.sennheiser.com/ajax/ping')
+                  clearSessionTimeouts()
+                }, 60 * 1000)
+              }
+
+              function submitReview (productid, campaignid, brand) {
+                clearSessionTimeouts()
+                pingServer()
+
+                if (brand && brand != 'undefined') {
+                  //alert(brand);
+                  $('<form>', {
+                    'id': 'brandsubmission',
+                    'html': '<input type="hidden" id="product_id" name="product_id" value="' + productid +
+                      '" /><input type="hidden" id="campaign_id" name="campaign_id" value="' + campaignid +
+                      '" /><input type="hidden" id="brand" name="brand" value="' + brand + '" />',
+                    'action': '/member/dashboard',
+                    'method': 'post',
+                  }).appendTo(document.body).submit()
+                } else {
+                  //console.log(campaignid);
+                  $BV.configure('global', {
+                    events: {
+                      submissionSubmitted: function (data) {
+                        logReview(productid)
+                      },
+                    },
+                  })
+                  $BV.configure('rr', {
+                    userToken: '4c5a61484c20507b421c6c09fd003ce77573657269643d63653537636226646174653d3230313830373330266d61786167653d31267375626a6563746964733d26496e63656e746976697a65645265766965773d547275652653616d706c696e672d73656e6e6865697365722d756b3d54727565',
+                  })
+                  $BV.ui('rr', 'submit_review', {
+                    productId: String(productid),    // The product id for the review submission
+                    campaignId: String(campaignid),   // The campaign id associated with the review submission.
+                  })
+                }
+              }
+
+              try {
+                $BV.configure('global', {
+                  events: {
+                    // If submission form closed, reset timeouts
+                    submissionClose: function () {
+                      // Reset server side session timeout
+                      $.get('https://sampleclub.sennheiser.com/ajax/ping').then(function () {
+                        // Reset client side session timeout
+                        resetSessionTimeouts()
+
+                        // Clear ping interval
+                        clearInterval(ping)
+                      })
+                    },
+                  },
+                })
+              } catch (e) {
+                // PRR client, $BV is not defined
+              }
+
+              function logReview (productid) {
+                console.log('logReview(' + productid + ')')
+                $.get('https://sampleclub.sennheiser.com/products/reviewed/150/' + productid, function (response) {})
+                $('#status_' + productid).html('Submitted')
+                $('#review_button_' + productid).html('')
+                incrementSubmittedReviewCount()
+              }
+
+            </script>
+
+
+
+        </section>
+        <!--/.span-->
+    </div>
+    <!--/.row-->
+    <footer class="row">
+        <p>
+            © 2018 Sennheiser electronic GmbH &amp; Co. KG | United Kingdom<br>Use of this site is subject to certain <a
+                href="https://sampleclub.sennheiser.com/legal/terms">Terms of Use</a>, which constitute a legal
+            agreement between you and Sennheiser electronic GmbH &amp; Co. KG </p>
+    </footer>
+</div>
+<!--/.container-->
+
+<script type="text/javascript">window.NREUM || (NREUM = {})
+NREUM.info = {
+  'beacon': 'bam.nr-data.net',
+  'licenseKey': 'ffcdcb57c1',
+  'applicationID': '171243810',
+  'transactionName': 'YFZTMUYAVkMDBk1ZXVkccAZACFdeTSFYQ1pVXFAXUE5RXgYAQQ==',
+  'queueTime': 0,
+  'applicationTime': 108,
+  'atts': 'TBFQRw4aRU0=',
+  'errorBeacon': 'bam.nr-data.net',
+  'agent': '',
+}</script>
+
+<div class="modal fade" id="session-timeout-modal" tabindex="-1" data-backdrop="static" data-keyboard="false"
+     role="dialog" aria-labelledby="Product Picker" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3>Timeout warning </h3>
+            </div>
+            <div class="modal-body">
+
+                <div>Due to inactivity, your online session with Sennheiser will expire in <strong><span
+                        id="session-timeout-seconds">60</span> seconds.</strong></div>
+                <div>Please click Continue Session to continue.</div>
+
+            </div>
+            <div class="modal-footer">
+                <button id="btn-reset-session-timeout" type="button" class="btn btn-primary" data-dismiss="modal">
+                    Continue Session
+                </button>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="bv-verify-css-loaded" style="height: 0px; width: 0px; border: 0px;"></div>
+<div class="bv-cleanslate bv-cv2-cleanslate bv-aria-status">
+    <div role="status" aria-live="polite" aria-relevant="additions" class="bv-core-container-25 bv-aria-polite">
+        <div class="bv-off-screen"></div>
+    </div>
+    <div role="status" aria-live="assertive" aria-relevant="additions" class="bv-core-container-25 bv-aria-assertive">
+        <div class="bv-off-screen"></div>
+    </div>
+</div>
+<div id="bv-mbox-overlay-id" class="bv-mbox-overlay"></div>
+<div id="bv-mboxzone-lightbox" class="bv-mboxzone bv-cleanslate bv-cv2-cleanslate bv-mbox-lightbox bv-mbox-opened"
+     style="height: auto !important;">
+    <div class="bv-mbox-inner bv-core-container-25 bv-mbox-lightbox">
+        <div class="bv-mbox-wrapper bv-mbox-content-submission-review bv-mbox-wide bv-mbox-box">
+            <div id="bv-mbox-lightbox-list" class="bv-mbox" role="dialog" aria-label="My Review for PXC 550">
+                <button type="button" name="Cancel" class="bv-mbox-close bv-focusable" onclick="return false;"
+                        tabindex="0" aria-labelledby="bv-mbox-close-label"><span aria-hidden="true"> ✘ </span> <span
+                        id="bv-mbox-close-label" class="bv-off-screen">Close</span></button>
+                <div class="bv-mbox-sidebar bv-sidebar-enabled">
+                    <div data-bv-v="submissionSidebar:4" class="bv-submission-sidebar bv-submission-side">
+                        <div class="bv-subject-info-section">
+                            <div class="bv-subject-info"><img class="bv-subject-image"
+                                                              src="snapshot/product_detail_x2_desktop_PXC_550-sennheiser-01-1312.jpg"
+                                                              alt="PXC 550">
+                                <h3 class="bv-subject-name-header"> Sennheiser - PXC 550 </h3></div>
+                        </div>
+                    </div>
+                </div>
+                <!--[if lt IE 7]>
+                <div class="bv-mbox-content-container bvie6 bvie-lt8 bvie"> <![endif]--> <!--[if IE 7]>
+                <div class="bv-mbox-content-container bvie7 bvie-lt8 bvie"> <![endif]--> <!--[if IE 8]>
+                <div class="bv-mbox-content-container bvie8 bvie"> <![endif]--> <!--[if IE 9]>
+                <div class="bv-mbox-content-container bvie9 bvie"> <![endif]--> <!--[if gt IE 9]> <!-->
+                <div class="bv-mbox-content-container"> <!--<![endif]--> <h2 class="bv-mbox-breadcrumb"><span
+                        data-bv-mbox-layer-index="0"
+                        class="bv-mbox-breadcrumb-item">   <span>My Review for PXC 550</span>   </span></h2>
+                    <div class="bv-mbox-injection-container" style="height: 998px !important;">
+                        <div class="bv-mbox-injection-target bv-mbox-current">
+                            <div data-bv-v="submission:1" class="bv-submission bv-submission-image">
+                                <div class="bv-compat">
+                                    <form id="bv-submitreview-product-PXC_550-c13"
+                                          target="bv-submission-target-default5717"
+                                          action="https://api.bazaarvoice.com/data/submitreview.json?"
+                                          accept-charset="utf-8" method="POST" class="bv-form" onsubmit="return false;">
+                                        <input type="hidden" name="passkey"
+                                               value="caF5Hae30Izyc9pE18wUnERc9viY9q4bZPG7XAZwdhjMM"
+                                               class="bv-noremember"> <input type="hidden" name="action" value="submit"
+                                                                             class="bv-noremember"> <input type="hidden"
+                                                                                                           name="apiversion"
+                                                                                                           value="5.5"
+                                                                                                           class="bv-noremember">
+                                        <input type="hidden" name="callback" value="parent.rpc.returnSubmissionResponse"
+                                               class="bv-noremember"> <input type="hidden" name="productid"
+                                                                             value="PXC 550" class="bv-noremember">
+                                        <input type="hidden" name="campaignid"
+                                               value="bvsampling_sennheiser_product_offer_july_2018_2018076"
+                                               class="bv-noremember"> <input type="hidden" name="fp" value=""
+                                                                             class="bv-noremember"> <input type="hidden"
+                                                                                                           name="forceutf8"
+                                                                                                           value="☠"
+                                                                                                           class="bv-noremember">
+                                        <input type="hidden" name="locale" value="en_GB" class="bv-noremember"> <input
+                                            type="hidden" name="contextdatavalue_VerifiedPurchaser" value="False"
+                                            class="bv-noremember"> <input type="hidden"
+                                                                          name="agreedtotermsandconditions"
+                                                                          value="false" class="bv-noremember"> <input
+                                            type="hidden" name="displaycode" value="16473_1_0-en_gb"
+                                            class="bv-noremember"> <input type="hidden" name="user"
+                                                                          value="4c5a61484c20507b421c6c09fd003ce77573657269643d63653537636226646174653d3230313830373330266d61786167653d31267375626a6563746964733d26496e63656e746976697a65645265766965773d547275652653616d706c696e672d73656e6e6865697365722d756b3d54727565"
+                                                                          class="bv-noremember"> <input type="hidden"
+                                                                                                        name="sendemailalertwhenpublished"
+                                                                                                        class="bv-noremember bv-form-ignore"
+                                                                                                        value="true">
+                                        <input type="hidden" name="sendemailalertwhencommented"
+                                               class="bv-noremember bv-form-ignore" value="true"> <input type="hidden"
+                                                                                                         name="sendemailalertwhenanswered"
+                                                                                                         class="bv-noremember bv-form-ignore"
+                                                                                                         value="true">
+                                        <div class="bv-submission-section">
+                                            <div class="bv-fieldsets bv-input-fieldsets">
+                                                <fieldset
+                                                        class="bv-fieldset bv-fieldset-rating bv-radio-field bv-fieldset-active">
+                                                    <span class="bv-fieldset-arrowicon"></span> <span
+                                                        class="bv-fieldset-inner"> <legend
+                                                        class="bv-fieldset-label-wrapper" id="bv-fieldset-label-rating"> <span
+                                                        class="bv-fieldset-label"> <span class="bv-fieldset-label-text"> Overall Rating* </span>  <span
+                                                        aria-hidden="false"
+                                                        class="bv-off-screen bv-field-aria-validation"></span>  </span> </legend> <span
+                                                        class="bv-helper"> <label class="bv-helper-label"></label> <span
+                                                        class="bv-helper-icon" aria-hidden="true"> <span
+                                                        class="bv-helper-icon-positive"> ✔ </span> <span
+                                                        class="bv-helper-icon-negative"> ✘ </span> </span> </span>          <span
+                                                        class="bv-fieldset-rating-wrapper bv-fieldset-radio-wrapper bv-focusable"
+                                                        role="radiogroup" aria-labelledby="bv-fieldset-label-rating"
+                                                        tabindex="0"
+                                                        aria-owns="bv-radio-rating-1 bv-radio-rating-2 bv-radio-rating-3 bv-radio-rating-4 bv-radio-rating-5"> <span
+                                                        class="bv-fieldset-rating-group bv-radio-group notranslate"> <span
+                                                        class="bv-submission-star-rating-control"><span
+                                                        class="bv-submission-star-rating bv-submission-rater-0 bv-radio-input bv-rating-input bv-required bv-submission-star-rating-applied bv-submission-star-rating-live"> <a
+                                                        class="bv-rating-link bv-focusable" id="bv-radio-rating-1"
+                                                        role="radio" href="javascript:void(0)" title="Poor"
+                                                        aria-checked="false" tabindex="0"> <span
+                                                        aria-hidden="true">★</span> <span
+                                                        class="bv-off-screen">Poor</span> </a> </span><span
+                                                        class="bv-submission-star-rating bv-submission-rater-0 bv-radio-input bv-rating-input bv-required bv-submission-star-rating-applied bv-submission-star-rating-live"> <a
+                                                        class="bv-rating-link bv-focusable" id="bv-radio-rating-2"
+                                                        role="radio" href="javascript:void(0)" title="Fair"
+                                                        aria-checked="false" tabindex="0"> <span
+                                                        aria-hidden="true">★</span> <span
+                                                        class="bv-off-screen">Fair</span> </a> </span><span
+                                                        class="bv-submission-star-rating bv-submission-rater-0 bv-radio-input bv-rating-input bv-required bv-submission-star-rating-applied bv-submission-star-rating-live"> <a
+                                                        class="bv-rating-link bv-focusable" id="bv-radio-rating-3"
+                                                        role="radio" href="javascript:void(0)" title="Average"
+                                                        aria-checked="false" tabindex="0"> <span
+                                                        aria-hidden="true">★</span> <span
+                                                        class="bv-off-screen">Average</span> </a> </span><span
+                                                        class="bv-submission-star-rating bv-submission-rater-0 bv-radio-input bv-rating-input bv-required bv-submission-star-rating-applied bv-submission-star-rating-live"> <a
+                                                        class="bv-rating-link bv-focusable" id="bv-radio-rating-4"
+                                                        role="radio" href="javascript:void(0)" title="Good"
+                                                        aria-checked="false" tabindex="0"> <span
+                                                        aria-hidden="true">★</span> <span
+                                                        class="bv-off-screen">Good</span> </a> </span><span
+                                                        class="bv-submission-star-rating bv-submission-rater-0 bv-radio-input bv-rating-input bv-required bv-submission-star-rating-applied bv-submission-star-rating-live"> <a
+                                                        class="bv-rating-link bv-focusable" id="bv-radio-rating-5"
+                                                        role="radio" href="javascript:void(0)" title="Excellent"
+                                                        aria-checked="false" tabindex="0"> <span
+                                                        aria-hidden="true">★</span> <span class="bv-off-screen">Excellent</span> </a> </span></span><ul
+                                                        role="presentation">  <li
+                                                        class="bv-radio-rating bv-radio-rating-group-1 bv-radio-container-li"> <input
+                                                        type="radio" name="rating"
+                                                        class="bv-radio-input bv-rating-input bv-required  bv-submission-star-rating-applied bv-hidden"
+                                                        value="1" title="Poor" role="presentation" aria-hidden="true"
+                                                        style="display: none;"> </li>  <li
+                                                        class="bv-radio-rating bv-radio-rating-group-2 bv-radio-container-li"> <input
+                                                        type="radio" name="rating"
+                                                        class="bv-radio-input bv-rating-input bv-required  bv-submission-star-rating-applied bv-hidden"
+                                                        value="2" title="Fair" role="presentation" aria-hidden="true"
+                                                        style="display: none;"> </li>  <li
+                                                        class="bv-radio-rating bv-radio-rating-group-3 bv-radio-container-li"> <input
+                                                        type="radio" name="rating"
+                                                        class="bv-radio-input bv-rating-input bv-required  bv-submission-star-rating-applied bv-hidden"
+                                                        value="3" title="Average" role="presentation" aria-hidden="true"
+                                                        style="display: none;"> </li>  <li
+                                                        class="bv-radio-rating bv-radio-rating-group-4 bv-radio-container-li"> <input
+                                                        type="radio" name="rating"
+                                                        class="bv-radio-input bv-rating-input bv-required  bv-submission-star-rating-applied bv-hidden"
+                                                        value="4" title="Good" role="presentation" aria-hidden="true"
+                                                        style="display: none;"> </li>  <li
+                                                        class="bv-radio-rating bv-radio-rating-group-5 bv-radio-container-li"> <input
+                                                        type="radio" name="rating"
+                                                        class="bv-radio-input bv-rating-input bv-required  bv-submission-star-rating-applied bv-hidden"
+                                                        value="5" title="Excellent" role="presentation"
+                                                        aria-hidden="true" style="display: none;"> </li>  </ul> </span>    <span
+                                                        class="bv-rating-helper bv-rating-helper-1" aria-hidden="true">Click to rate!</span>   </span>      </span>
+                                                </fieldset>
+                                                <fieldset
+                                                        class="bv-fieldset bv-fieldset-title bv-text-field bv-nocount">
+                                                    <div class="bv-fieldset-arrowicon"></div>
+                                                    <div class="bv-fieldset-inner"><label for="bv-text-field-title"
+                                                                                          class="bv-fieldset-label-wrapper">
+                                                        <span class="bv-fieldset-label"> <span
+                                                                class="bv-fieldset-label-text"> Review Title* </span>  <span
+                                                                aria-hidden="false"
+                                                                class="bv-off-screen bv-field-aria-validation"></span> </span>
+                                                        <span class="bv-off-screen">Maximum of 50 characters.</span>
+                                                    </label> <span class="bv-helper"> <label
+                                                            class="bv-helper-label"></label> <span
+                                                            class="bv-helper-icon" aria-hidden="true"> <span
+                                                            class="bv-helper-icon-positive"> ✔ </span> <span
+                                                            class="bv-helper-icon-negative"> ✘ </span> </span> </span>
+                                                        <input id="bv-text-field-title" class="bv-text bv-focusable "
+                                                               type="text" name="title" maxlength="50"
+                                                               placeholder="Example: Great features!" value=""
+                                                               tabindex="0"></div>
+                                                </fieldset>
+                                                <fieldset
+                                                        class="bv-fieldset bv-focusable bv-fieldset-reviewtext bv-textarea-field bv-mincount"
+                                                        tabindex="0">
+                                                    <div class="bv-fieldset-arrowicon"></div>
+                                                    <div class="bv-fieldset-inner"><label
+                                                            for="bv-textarea-field-reviewtext"
+                                                            class="bv-fieldset-label-wrapper"> <span
+                                                            class="bv-fieldset-label"
+                                                            aria-describedby="reviewtext_validation"> <span
+                                                            class="bv-fieldset-label-text"> Review* </span>  <span
+                                                            aria-hidden="false"
+                                                            class="bv-off-screen bv-field-aria-validation">0 out of a minimum 50 characters used</span> </span>
+                                                    </label> <span class="bv-helper"> <label class="bv-helper-label">0 / 50</label> <span
+                                                            class="bv-helper-icon" aria-hidden="true"> <span
+                                                            class="bv-helper-icon-positive"> ✔ </span> <span
+                                                            class="bv-helper-icon-negative"> ✘ </span> </span> </span>
+                                                        <div class="bv-review-field-content-wrapper"><textarea
+                                                                id="bv-textarea-field-reviewtext" class="bv-focusable "
+                                                                name="reviewtext" maxlength="10000"
+                                                                placeholder="Example: I bought this a month ago and am so happy that I did..."
+                                                                data-bv-dropdown-inmbox=""
+                                                                data-bv-dropdown-style="helperTextOverflow"
+                                                                data-bv-dropdown-always-show="false"
+                                                                data-bv-dropdown-text="&lt;h2&gt;Writing guidelines&lt;/h2&gt;&lt;p&gt;We want to publish your review, so please:&lt;/p&gt;&lt;ul&gt;&lt;li&gt;Keep your review focused on the product.&lt;/li&gt;&lt;li&gt;Avoid writing about customer service, contact us instead if you have issues requiring immediate attention.&lt;/li&gt;&lt;li&gt;Refrain from mentioning competitors or the specific price you paid for the product.&lt;/li&gt;&lt;li&gt;Do not include any personally identifiable information, such as full names.&lt;/li&gt;&lt;/ul&gt;"
+                                                                tabindex="0"
+                                                                style="word-wrap: break-word; overflow: hidden !important; height: 90px !important;"></textarea>
+                                                            <div class="bv-review-media bv-thumbnail-strip"></div>
+                                                            <div class="bv-review-media">
+                                                                <div class="bv-review-media-actions">
+                                                                    <button type="button"
+                                                                            class="bv-content-btn bv-btn-add-photo bv-popup-target bv-focusable"
+                                                                            tabindex="0" onclick="return false;"><span
+                                                                            aria-hidden="true">Add Photo</span> <span
+                                                                            class="bv-review-photo-actions-label bv-off-screen">    Add up to 6 photos   </span>
+                                                                    </button>
+                                                                    <span class="bv-review-photo-actions-label">    Add up to 6 photos   </span>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </fieldset>
+                                                <fieldset
+                                                        class="bv-fieldset bv-fieldset-isrecommended bv-radio-field bv-nocount">
+                                                    <span class="bv-fieldset-arrowicon"></span> <span
+                                                        class="bv-fieldset-inner"> <legend
+                                                        class="bv-fieldset-label-wrapper"
+                                                        id="bv-fieldset-label-isrecommended"> <span
+                                                        class="bv-fieldset-label"> <span class="bv-fieldset-label-text"> Would you recommend this product to a friend? </span>  <span
+                                                        aria-hidden="false"
+                                                        class="bv-off-screen bv-field-aria-validation"></span>  </span> </legend> <span
+                                                        class="bv-helper"> <label class="bv-helper-label"></label> <span
+                                                        class="bv-helper-icon" aria-hidden="true"> <span
+                                                        class="bv-helper-icon-positive"> ✔ </span> <span
+                                                        class="bv-helper-icon-negative"> ✘ </span> </span> </span>          <span
+                                                        class="bv-fieldset-isrecommended-wrapper bv-fieldset-radio-wrapper bv-focusable"
+                                                        role="radiogroup"
+                                                        aria-labelledby="bv-fieldset-label-isrecommended" tabindex="0"
+                                                        aria-owns="bv-radio-isrecommended-true bv-radio-isrecommended-false"> <span
+                                                        class="bv-fieldset-isrecommended-group bv-radio-group"> <ul
+                                                        role="presentation">  <li
+                                                        class="bv-radio-isrecommended bv-radio-isrecommended-group-true bv-radio-container-li"> <label
+                                                        class="bv-radio-wrapper-label" for="bv-radio-isrecommended-true"
+                                                        id="bv-radio-isrecommended-true-label">Yes</label><input
+                                                        type="radio" id="bv-radio-isrecommended-true"
+                                                        name="isrecommended"
+                                                        class="bv-radio-input bv-isrecommended-input bv-focusable"
+                                                        value="true" data-label="Yes" title="Yes" aria-label="Yes"
+                                                        role="radio" tabindex="0"> </li>  <li
+                                                        class="bv-radio-isrecommended bv-radio-isrecommended-group-false bv-radio-container-li"> <label
+                                                        class="bv-radio-wrapper-label"
+                                                        for="bv-radio-isrecommended-false"
+                                                        id="bv-radio-isrecommended-false-label">No</label><input
+                                                        type="radio" id="bv-radio-isrecommended-false"
+                                                        name="isrecommended"
+                                                        class="bv-radio-input bv-isrecommended-input bv-focusable"
+                                                        value="false" data-label="No" title="No" aria-label="No"
+                                                        role="radio" tabindex="0"> </li>  </ul> </span>     </span>      </span>
+                                                </fieldset>
+                                                <fieldset
+                                                        class="bv-fieldset bv-fieldset-usernickname bv-text-field bv-fieldset-small bv-mincount">
+                                                    <div class="bv-fieldset-arrowicon"></div>
+                                                    <div class="bv-fieldset-inner"><label
+                                                            for="bv-text-field-usernickname"
+                                                            class="bv-fieldset-label-wrapper"> <span
+                                                            class="bv-fieldset-label"> <span
+                                                            class="bv-fieldset-label-text"> Nickname* </span>  <span
+                                                            aria-hidden="false"
+                                                            class="bv-off-screen bv-field-aria-validation">0 out of a minimum 4 characters used</span> </span>
+                                                        <span class="bv-off-screen">Maximum of 25 characters.</span>
+                                                    </label> <span class="bv-helper"> <label class="bv-helper-label">0 / 4</label> <span
+                                                            class="bv-helper-icon" aria-hidden="true"> <span
+                                                            class="bv-helper-icon-positive"> ✔ </span> <span
+                                                            class="bv-helper-icon-negative"> ✘ </span> </span> </span>
+                                                        <input id="bv-text-field-usernickname"
+                                                               class="bv-text bv-focusable " type="text"
+                                                               name="usernickname" maxlength="25"
+                                                               placeholder="Example: jackie27" value="" tabindex="0">
+                                                    </div>
+                                                </fieldset>
+                                                <fieldset
+                                                        class="bv-fieldset bv-fieldset-userlocation bv-text-field bv-nocount bv-fieldset-small">
+                                                    <div class="bv-fieldset-arrowicon"></div>
+                                                    <div class="bv-fieldset-inner"><label
+                                                            for="bv-text-field-userlocation"
+                                                            class="bv-fieldset-label-wrapper"> <span
+                                                            class="bv-fieldset-label"> <span
+                                                            class="bv-fieldset-label-text"> Location </span>  <span
+                                                            aria-hidden="false"
+                                                            class="bv-off-screen bv-field-aria-validation"></span> </span>
+                                                        <span class="bv-off-screen">Maximum of 50 characters.</span>
+                                                    </label> <span class="bv-helper"> <label
+                                                            class="bv-helper-label"></label> <span
+                                                            class="bv-helper-icon" aria-hidden="true"> <span
+                                                            class="bv-helper-icon-positive"> ✔ </span> <span
+                                                            class="bv-helper-icon-negative"> ✘ </span> </span> </span>
+                                                        <input id="bv-text-field-userlocation"
+                                                               class="bv-text bv-focusable " type="text"
+                                                               name="userlocation" maxlength="50"
+                                                               placeholder="Example: Birmingham, West Midlands" value=""
+                                                               tabindex="0"></div>
+                                                </fieldset>
+                                                <fieldset
+                                                        class="bv-fieldset bv-fieldset-useremail bv-email-field bv-nocount bv-fieldset-small-alone">
+                                                    <div class="bv-fieldset-arrowicon"></div>
+                                                    <div class="bv-fieldset-inner"><label for="bv-email-field-useremail"
+                                                                                          class="bv-fieldset-label-wrapper">
+                                                        <span class="bv-fieldset-label"> <span
+                                                                class="bv-fieldset-label-text"> Email* </span>  <span
+                                                                aria-hidden="false"
+                                                                class="bv-off-screen bv-field-aria-validation"></span> </span>
+                                                        <span class="bv-off-screen">Maximum of 255 characters.</span>
+                                                    </label> <span class="bv-helper"> <label
+                                                            class="bv-helper-label"></label> <span
+                                                            class="bv-helper-icon" aria-hidden="true"> <span
+                                                            class="bv-helper-icon-positive"> ✔ </span> <span
+                                                            class="bv-helper-icon-negative"> ✘ </span> </span> </span>
+                                                        <input id="bv-email-field-useremail"
+                                                               class="bv-text bv-focusable bv-email" type="email"
+                                                               name="useremail" maxlength="255"
+                                                               placeholder="Example: yourname@example.com" value=""
+                                                               tabindex="0"></div>
+                                                </fieldset>
+                                                <fieldset
+                                                        class="bv-fieldset bv-fieldset-contextdatavalue_Age bv-select-field">
+                                                    <div class="bv-fieldset-arrowicon"></div>
+                                                    <div class="bv-fieldset-inner"><label
+                                                            for="bv-select-field-contextdatavalue_Age"
+                                                            class="bv-fieldset-label-wrapper"> <span
+                                                            class="bv-fieldset-label"> <span
+                                                            class="bv-fieldset-label-text"> How old are you? </span>  <span
+                                                            aria-hidden="false"
+                                                            class="bv-off-screen bv-field-aria-validation"></span> </span>
+                                                    </label> <span class="bv-helper"> <label
+                                                            class="bv-helper-label"></label> <span
+                                                            class="bv-helper-icon" aria-hidden="true"> <span
+                                                            class="bv-helper-icon-positive"> ✔ </span> <span
+                                                            class="bv-helper-icon-negative"> ✘ </span> </span> </span>
+                                                        <span class="bv-fieldset-select-wrapper"> <select
+                                                                id="bv-select-field-contextdatavalue_Age"
+                                                                class="bv-select-cleanslate bv-select bv-focusable bv-fastclick-ignore"
+                                                                name="contextdatavalue_Age" tabindex="0">  <option
+                                                                value="" selected="selected" class="bv-option-disabled"
+                                                                disabled="disabled">  Select  </option>  <option
+                                                                value="17orUnder">  17 or under  </option>  <option
+                                                                value="18to24">  18 to 24  </option>  <option
+                                                                value="25to34">  25 to 34  </option>  <option
+                                                                value="35to44">  35 to 44  </option>  <option
+                                                                value="45to54">  45 to 54  </option>  <option
+                                                                value="55to64">  55 to 64  </option>  <option
+                                                                value="65orOver">  65 or over  </option>  </select> <button
+                                                                type="button" class="bv-dropdown-arrow"
+                                                                aria-hidden="true" onclick="return false;">▼</button>  </span>
+                                                    </div>
+                                                </fieldset>
+                                                <fieldset
+                                                        class="bv-fieldset bv-fieldset-contextdatavalue_Gender bv-select-field">
+                                                    <div class="bv-fieldset-arrowicon"></div>
+                                                    <div class="bv-fieldset-inner"><label
+                                                            for="bv-select-field-contextdatavalue_Gender"
+                                                            class="bv-fieldset-label-wrapper"> <span
+                                                            class="bv-fieldset-label"> <span
+                                                            class="bv-fieldset-label-text"> What is your gender? </span>  <span
+                                                            aria-hidden="false"
+                                                            class="bv-off-screen bv-field-aria-validation"></span> </span>
+                                                    </label> <span class="bv-helper"> <label
+                                                            class="bv-helper-label"></label> <span
+                                                            class="bv-helper-icon" aria-hidden="true"> <span
+                                                            class="bv-helper-icon-positive"> ✔ </span> <span
+                                                            class="bv-helper-icon-negative"> ✘ </span> </span> </span>
+                                                        <span class="bv-fieldset-select-wrapper"> <select
+                                                                id="bv-select-field-contextdatavalue_Gender"
+                                                                class="bv-select-cleanslate bv-select bv-focusable bv-fastclick-ignore"
+                                                                name="contextdatavalue_Gender" tabindex="0">  <option
+                                                                value="" selected="selected" class="bv-option-disabled"
+                                                                disabled="disabled">  Select  </option>  <option
+                                                                value="Male">  Male  </option>  <option value="Female">  Female  </option>  </select> <button
+                                                                type="button" class="bv-dropdown-arrow"
+                                                                aria-hidden="true" onclick="return false;">▼</button>  </span>
+                                                    </div>
+                                                </fieldset>
+                                                <fieldset
+                                                        class="bv-fieldset bv-fieldset-rating_Quality bv-radio-field bv-fieldset-secondary-rating">
+                                                    <span class="bv-fieldset-arrowicon"></span> <span
+                                                        class="bv-fieldset-inner"> <legend
+                                                        class="bv-fieldset-label-wrapper"
+                                                        id="bv-fieldset-label-rating_Quality"> <span
+                                                        class="bv-fieldset-label"> <span class="bv-fieldset-label-text"> How would you rate the quality of this product? </span>  <span
+                                                        aria-hidden="false"
+                                                        class="bv-off-screen bv-field-aria-validation"></span>  </span> </legend> <span
+                                                        class="bv-helper"> <label class="bv-helper-label"></label> <span
+                                                        class="bv-helper-icon" aria-hidden="true"> <span
+                                                        class="bv-helper-icon-positive"> ✔ </span> <span
+                                                        class="bv-helper-icon-negative"> ✘ </span> </span> </span>          <span
+                                                        class="bv-fieldset-rating_Quality-wrapper bv-fieldset-radio-wrapper bv-focusable"
+                                                        role="radiogroup"
+                                                        aria-labelledby="bv-fieldset-label-rating_Quality" tabindex="0"
+                                                        aria-owns="bv-radio-rating_Quality-1 bv-radio-rating_Quality-2 bv-radio-rating_Quality-3 bv-radio-rating_Quality-4 bv-radio-rating_Quality-5"> <span
+                                                        class="bv-fieldset-rating_Quality-group bv-radio-group notranslate"> <span
+                                                        class="bv-submission-star-rating-control"><span
+                                                        class="bv-submission-star-rating bv-submission-rater-0 bv-radio-input bv-rating_Quality-input bv-rating-input bv-secondary-rating-input bv-submission-star-rating-applied bv-submission-star-rating-live"> <a
+                                                        class="bv-rating-link bv-focusable"
+                                                        id="bv-radio-rating_Quality-1" role="radio"
+                                                        href="javascript:void(0)" title="Poor" aria-checked="false"
+                                                        tabindex="0"> <span aria-hidden="true">★</span> <span
+                                                        class="bv-off-screen">Poor</span> </a> </span><span
+                                                        class="bv-submission-star-rating bv-submission-rater-0 bv-radio-input bv-rating_Quality-input bv-rating-input bv-secondary-rating-input bv-submission-star-rating-applied bv-submission-star-rating-live"> <a
+                                                        class="bv-rating-link bv-focusable"
+                                                        id="bv-radio-rating_Quality-2" role="radio"
+                                                        href="javascript:void(0)" title="Fair" aria-checked="false"
+                                                        tabindex="0"> <span aria-hidden="true">★</span> <span
+                                                        class="bv-off-screen">Fair</span> </a> </span><span
+                                                        class="bv-submission-star-rating bv-submission-rater-0 bv-radio-input bv-rating_Quality-input bv-rating-input bv-secondary-rating-input bv-submission-star-rating-applied bv-submission-star-rating-live"> <a
+                                                        class="bv-rating-link bv-focusable"
+                                                        id="bv-radio-rating_Quality-3" role="radio"
+                                                        href="javascript:void(0)" title="Average" aria-checked="false"
+                                                        tabindex="0"> <span aria-hidden="true">★</span> <span
+                                                        class="bv-off-screen">Average</span> </a> </span><span
+                                                        class="bv-submission-star-rating bv-submission-rater-0 bv-radio-input bv-rating_Quality-input bv-rating-input bv-secondary-rating-input bv-submission-star-rating-applied bv-submission-star-rating-live"> <a
+                                                        class="bv-rating-link bv-focusable"
+                                                        id="bv-radio-rating_Quality-4" role="radio"
+                                                        href="javascript:void(0)" title="Good" aria-checked="false"
+                                                        tabindex="0"> <span aria-hidden="true">★</span> <span
+                                                        class="bv-off-screen">Good</span> </a> </span><span
+                                                        class="bv-submission-star-rating bv-submission-rater-0 bv-radio-input bv-rating_Quality-input bv-rating-input bv-secondary-rating-input bv-submission-star-rating-applied bv-submission-star-rating-live"> <a
+                                                        class="bv-rating-link bv-focusable"
+                                                        id="bv-radio-rating_Quality-5" role="radio"
+                                                        href="javascript:void(0)" title="Excellent" aria-checked="false"
+                                                        tabindex="0"> <span aria-hidden="true">★</span> <span
+                                                        class="bv-off-screen">Excellent</span> </a> </span></span><ul
+                                                        role="presentation">  <li
+                                                        class="bv-radio-rating bv-radio-rating_Quality-group-1 bv-radio-container-li"> <input
+                                                        type="radio" name="rating_Quality"
+                                                        class="bv-radio-input bv-rating_Quality-input bv-rating-input bv-secondary-rating-input  bv-submission-star-rating-applied bv-hidden"
+                                                        value="1" title="Poor" role="presentation" aria-hidden="true"
+                                                        style="display: none;"> </li>  <li
+                                                        class="bv-radio-rating bv-radio-rating_Quality-group-2 bv-radio-container-li"> <input
+                                                        type="radio" name="rating_Quality"
+                                                        class="bv-radio-input bv-rating_Quality-input bv-rating-input bv-secondary-rating-input  bv-submission-star-rating-applied bv-hidden"
+                                                        value="2" title="Fair" role="presentation" aria-hidden="true"
+                                                        style="display: none;"> </li>  <li
+                                                        class="bv-radio-rating bv-radio-rating_Quality-group-3 bv-radio-container-li"> <input
+                                                        type="radio" name="rating_Quality"
+                                                        class="bv-radio-input bv-rating_Quality-input bv-rating-input bv-secondary-rating-input  bv-submission-star-rating-applied bv-hidden"
+                                                        value="3" title="Average" role="presentation" aria-hidden="true"
+                                                        style="display: none;"> </li>  <li
+                                                        class="bv-radio-rating bv-radio-rating_Quality-group-4 bv-radio-container-li"> <input
+                                                        type="radio" name="rating_Quality"
+                                                        class="bv-radio-input bv-rating_Quality-input bv-rating-input bv-secondary-rating-input  bv-submission-star-rating-applied bv-hidden"
+                                                        value="4" title="Good" role="presentation" aria-hidden="true"
+                                                        style="display: none;"> </li>  <li
+                                                        class="bv-radio-rating bv-radio-rating_Quality-group-5 bv-radio-container-li"> <input
+                                                        type="radio" name="rating_Quality"
+                                                        class="bv-radio-input bv-rating_Quality-input bv-rating-input bv-secondary-rating-input  bv-submission-star-rating-applied bv-hidden"
+                                                        value="5" title="Excellent" role="presentation"
+                                                        aria-hidden="true" style="display: none;"> </li>  </ul> </span>    <span
+                                                        class="bv-rating-helper bv-rating_Quality-helper-1"
+                                                        aria-hidden="true">Click to rate!</span>   </span>      </span>
+                                                </fieldset>
+                                                <fieldset
+                                                        class="bv-fieldset bv-fieldset-rating_Value bv-radio-field bv-fieldset-secondary-rating">
+                                                    <span class="bv-fieldset-arrowicon"></span> <span
+                                                        class="bv-fieldset-inner"> <legend
+                                                        class="bv-fieldset-label-wrapper"
+                                                        id="bv-fieldset-label-rating_Value"> <span
+                                                        class="bv-fieldset-label"> <span class="bv-fieldset-label-text"> How would you rate the value of this product? </span>  <span
+                                                        aria-hidden="false"
+                                                        class="bv-off-screen bv-field-aria-validation"></span>  </span> </legend> <span
+                                                        class="bv-helper"> <label class="bv-helper-label"></label> <span
+                                                        class="bv-helper-icon" aria-hidden="true"> <span
+                                                        class="bv-helper-icon-positive"> ✔ </span> <span
+                                                        class="bv-helper-icon-negative"> ✘ </span> </span> </span>          <span
+                                                        class="bv-fieldset-rating_Value-wrapper bv-fieldset-radio-wrapper bv-focusable"
+                                                        role="radiogroup"
+                                                        aria-labelledby="bv-fieldset-label-rating_Value" tabindex="0"
+                                                        aria-owns="bv-radio-rating_Value-1 bv-radio-rating_Value-2 bv-radio-rating_Value-3 bv-radio-rating_Value-4 bv-radio-rating_Value-5"> <span
+                                                        class="bv-fieldset-rating_Value-group bv-radio-group notranslate"> <span
+                                                        class="bv-submission-star-rating-control"><span
+                                                        class="bv-submission-star-rating bv-submission-rater-0 bv-radio-input bv-rating_Value-input bv-rating-input bv-secondary-rating-input bv-submission-star-rating-applied bv-submission-star-rating-live"> <a
+                                                        class="bv-rating-link bv-focusable" id="bv-radio-rating_Value-1"
+                                                        role="radio" href="javascript:void(0)" title="Poor"
+                                                        aria-checked="false" tabindex="0"> <span
+                                                        aria-hidden="true">★</span> <span
+                                                        class="bv-off-screen">Poor</span> </a> </span><span
+                                                        class="bv-submission-star-rating bv-submission-rater-0 bv-radio-input bv-rating_Value-input bv-rating-input bv-secondary-rating-input bv-submission-star-rating-applied bv-submission-star-rating-live"> <a
+                                                        class="bv-rating-link bv-focusable" id="bv-radio-rating_Value-2"
+                                                        role="radio" href="javascript:void(0)" title="Fair"
+                                                        aria-checked="false" tabindex="0"> <span
+                                                        aria-hidden="true">★</span> <span
+                                                        class="bv-off-screen">Fair</span> </a> </span><span
+                                                        class="bv-submission-star-rating bv-submission-rater-0 bv-radio-input bv-rating_Value-input bv-rating-input bv-secondary-rating-input bv-submission-star-rating-applied bv-submission-star-rating-live"> <a
+                                                        class="bv-rating-link bv-focusable" id="bv-radio-rating_Value-3"
+                                                        role="radio" href="javascript:void(0)" title="Average"
+                                                        aria-checked="false" tabindex="0"> <span
+                                                        aria-hidden="true">★</span> <span
+                                                        class="bv-off-screen">Average</span> </a> </span><span
+                                                        class="bv-submission-star-rating bv-submission-rater-0 bv-radio-input bv-rating_Value-input bv-rating-input bv-secondary-rating-input bv-submission-star-rating-applied bv-submission-star-rating-live"> <a
+                                                        class="bv-rating-link bv-focusable" id="bv-radio-rating_Value-4"
+                                                        role="radio" href="javascript:void(0)" title="Good"
+                                                        aria-checked="false" tabindex="0"> <span
+                                                        aria-hidden="true">★</span> <span
+                                                        class="bv-off-screen">Good</span> </a> </span><span
+                                                        class="bv-submission-star-rating bv-submission-rater-0 bv-radio-input bv-rating_Value-input bv-rating-input bv-secondary-rating-input bv-submission-star-rating-applied bv-submission-star-rating-live"> <a
+                                                        class="bv-rating-link bv-focusable" id="bv-radio-rating_Value-5"
+                                                        role="radio" href="javascript:void(0)" title="Excellent"
+                                                        aria-checked="false" tabindex="0"> <span
+                                                        aria-hidden="true">★</span> <span class="bv-off-screen">Excellent</span> </a> </span></span><ul
+                                                        role="presentation">  <li
+                                                        class="bv-radio-rating bv-radio-rating_Value-group-1 bv-radio-container-li"> <input
+                                                        type="radio" name="rating_Value"
+                                                        class="bv-radio-input bv-rating_Value-input bv-rating-input bv-secondary-rating-input  bv-submission-star-rating-applied bv-hidden"
+                                                        value="1" title="Poor" role="presentation" aria-hidden="true"
+                                                        style="display: none;"> </li>  <li
+                                                        class="bv-radio-rating bv-radio-rating_Value-group-2 bv-radio-container-li"> <input
+                                                        type="radio" name="rating_Value"
+                                                        class="bv-radio-input bv-rating_Value-input bv-rating-input bv-secondary-rating-input  bv-submission-star-rating-applied bv-hidden"
+                                                        value="2" title="Fair" role="presentation" aria-hidden="true"
+                                                        style="display: none;"> </li>  <li
+                                                        class="bv-radio-rating bv-radio-rating_Value-group-3 bv-radio-container-li"> <input
+                                                        type="radio" name="rating_Value"
+                                                        class="bv-radio-input bv-rating_Value-input bv-rating-input bv-secondary-rating-input  bv-submission-star-rating-applied bv-hidden"
+                                                        value="3" title="Average" role="presentation" aria-hidden="true"
+                                                        style="display: none;"> </li>  <li
+                                                        class="bv-radio-rating bv-radio-rating_Value-group-4 bv-radio-container-li"> <input
+                                                        type="radio" name="rating_Value"
+                                                        class="bv-radio-input bv-rating_Value-input bv-rating-input bv-secondary-rating-input  bv-submission-star-rating-applied bv-hidden"
+                                                        value="4" title="Good" role="presentation" aria-hidden="true"
+                                                        style="display: none;"> </li>  <li
+                                                        class="bv-radio-rating bv-radio-rating_Value-group-5 bv-radio-container-li"> <input
+                                                        type="radio" name="rating_Value"
+                                                        class="bv-radio-input bv-rating_Value-input bv-rating-input bv-secondary-rating-input  bv-submission-star-rating-applied bv-hidden"
+                                                        value="5" title="Excellent" role="presentation"
+                                                        aria-hidden="true" style="display: none;"> </li>  </ul> </span>    <span
+                                                        class="bv-rating-helper bv-rating_Value-helper-1"
+                                                        aria-hidden="true">Click to rate!</span>   </span>      </span>
+                                                </fieldset>
+                                                <fieldset
+                                                        class="bv-hidden-field bv-fieldset-contextdatavalue_IncentivizedReview">
+                                                    <input id="bv-hidden-contextdatavalue_IncentivizedReview"
+                                                           type="hidden" class="bv-noremember"
+                                                           name="contextdatavalue_IncentivizedReview" value="True">
+                                                </fieldset>
+                                                <fieldset
+                                                        class="bv-fieldset bv-fieldset-contextdatavalue_HowOftenDoYouUseThisProduct bv-select-field">
+                                                    <div class="bv-fieldset-arrowicon"></div>
+                                                    <div class="bv-fieldset-inner"><label
+                                                            for="bv-select-field-contextdatavalue_HowOftenDoYouUseThisProduct"
+                                                            class="bv-fieldset-label-wrapper"> <span
+                                                            class="bv-fieldset-label"> <span
+                                                            class="bv-fieldset-label-text"> How often do you use this product? </span>  <span
+                                                            aria-hidden="false"
+                                                            class="bv-off-screen bv-field-aria-validation"></span> </span>
+                                                    </label> <span class="bv-helper"> <label
+                                                            class="bv-helper-label"></label> <span
+                                                            class="bv-helper-icon" aria-hidden="true"> <span
+                                                            class="bv-helper-icon-positive"> ✔ </span> <span
+                                                            class="bv-helper-icon-negative"> ✘ </span> </span> </span>
+                                                        <span class="bv-fieldset-select-wrapper"> <select
+                                                                id="bv-select-field-contextdatavalue_HowOftenDoYouUseThisProduct"
+                                                                class="bv-select-cleanslate bv-select bv-focusable bv-fastclick-ignore"
+                                                                name="contextdatavalue_HowOftenDoYouUseThisProduct"
+                                                                tabindex="0">  <option value="" selected="selected"
+                                                                                       class="bv-option-disabled"
+                                                                                       disabled="disabled">  Select  </option>  <option
+                                                                value="Daily">  Daily  </option>  <option
+                                                                value="AFewTimesPerWeek">  A few times per week  </option>  <option
+                                                                value="OncePerWeek">  Once per week  </option>  <option
+                                                                value="Monthly">  Monthly  </option>  </select> <button
+                                                                type="button" class="bv-dropdown-arrow"
+                                                                aria-hidden="true" onclick="return false;">▼</button>  </span>
+                                                    </div>
+                                                </fieldset>
+                                            </div>
+                                            <div class="bv-fieldsets bv-fieldsets-actions">
+                                                <fieldset
+                                                        class="bv-fieldset bv-fieldset-agreements bv-fieldset-reviews-termsAndConditions bv-checkbox-field ">
+                                                    <div class="bv-fieldset-arrowicon"></div>
+                                                    <div class="bv-fieldset-inner">
+                                                        <div class="bv-checkbox-container"><input
+                                                                id="bv-checkbox-reviews-termsAndConditions"
+                                                                name="agreements_reviews_termsAndConditions"
+                                                                class="bv-checkbox bv-focusable " type="checkbox"
+                                                                value="true" tabindex="0"> <label
+                                                                class="bv-fieldset-label-checkbox"
+                                                                for="bv-checkbox-reviews-termsAndConditions"> <span
+                                                                class="bv-fieldset-label-text">I agree to the <a
+                                                                href="https://sampleclub.sennheiser.com/member/dashboard#"
+                                                                class="bv-text-link bv-focusable" tabindex="0">terms &amp; conditions</a></span>
+                                                            <span aria-hidden="false"
+                                                                  class="bv-off-screen bv-field-aria-validation"></span>
+                                                        </label></div>
+                                                        <span class="bv-helper"> <span class="bv-helper-icon"
+                                                                                       aria-hidden="true"> <span
+                                                                class="bv-helper-icon-positive"> ✔ </span> <span
+                                                                class="bv-helper-icon-negative"> ✘ </span> </span> </span>
+                                                    </div>
+                                                </fieldset>
+                                                <fieldset class="bv-form-actions bv-fieldset">
+                                                    <div class="bv-fieldset-arrowicon"></div>
+                                                    <div class="bv-fieldset-inner">
+                                                        <div class="bv-actions-container"><p id="bv-casltext-review"
+                                                                                             class="bv-fieldset-casltext">
+                                                            You may receive emails regarding this submission. Any emails
+                                                            will include the ability to opt-out of future
+                                                            communications.</p>
+                                                            <button type="button" aria-describedby="bv-casltext-review"
+                                                                    class="bv-form-actions-submit bv-submit bv-focusable bv-submission-button-submit"
+                                                                    name="bv-submit-button" tabindex="0">Post Review
+                                                            </button>
+                                                            <button type="button"
+                                                                    class="bv-form-action bv-cancel bv-submission-button-submit"
+                                                                    onclick="return false;">Cancel
+                                                            </button>
+                                                        </div>
+                                                    </div>
+                                                </fieldset>
+                                            </div>
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<textarea tabindex="-1" aria-hidden="true"
+          style="position: absolute; top: -9999px; left: -9999px; right: auto; bottom: auto; box-sizing: content-box; word-wrap: break-word; overflow: hidden; height: 0px !important; min-height: 0px !important; line-height: 22.5px; text-indent: 0px; word-spacing: 0px; text-transform: none; letter-spacing: 0px; font-style: normal; font-weight: 400; font-size: 15px; font-family: Arial, Helvetica, sans-serif; width: 590px;"
+          class="autosizejs"></textarea></body>
+</html>

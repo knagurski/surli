@@ -1,0 +1,89 @@
+
+div.dataTables_length label {
+	float: left;
+	text-align: left;
+}
+
+div.dataTables_length select {
+	width: 75px;
+}
+
+div.dataTables_filter label {
+	float: right;
+}
+
+div.dataTables_info {
+	padding-top: 8px;
+}
+
+div.dataTables_paginate {
+	float: right;
+	margin: -10px 0 0 0;
+}
+
+div#item-list_length, div#item-list2_length, div#member-invite-list_length, div#member-invite-table_length, div#member-reinvite-table_length {
+	position: absolute;
+	margin: 8px 0 0 0px;
+}
+
+table.table {
+	clear: both;
+	margin-top: 15px !important;
+	margin-bottom: 6px !important;
+}
+
+table.table thead .sorting,
+table.table thead .sorting_asc,
+table.table thead .sorting_desc,
+table.table thead .sorting_asc_disabled,
+table.table thead .sorting_desc_disabled {
+	cursor: pointer;
+	*cursor: hand;
+}
+
+table.table thead .sorting { background: /* #eee */ url('/snapshot/sort_both.png') no-repeat center right; }
+table.table thead .sorting_asc { background: /* #ddd */ url('/snapshot/sort_asc.png') no-repeat center right; }
+table.table thead .sorting_desc { background: /* #ddd */ url('/snapshot/sort_desc.png') no-repeat center right; }
+
+table.table thead .sorting_asc_disabled { background: url('/snapshot/sort_asc_disabled.png') no-repeat center right; }
+table.table thead .sorting_desc_disabled { background: url('/snapshot/sort_desc_disabled.png') no-repeat center right; }
+
+table.dataTable th:active {
+	outline: none;
+}
+.table tbody tr:hover td,
+.table tbody tr:hover th {
+  background-color: #fffee3;
+  cursor: pointer;
+}
+tr.row_selected, tr.odd.row_selected {
+	background: #fffee3 !important;
+}
+#item-list_filter.input-group .form-control, #item-list2_filter.input-group .form-control,
+#member-invite-table_filter.input-group .form-control, #member-reinvite-table_filter.input-group .form-control {
+	-webkit-box-sizing: border-box;
+	-moz-box-sizing: border-box;
+	box-sizing: border-box;
+	-webkit-border-radius: 4px;
+	-moz-box-border-radius: 4px;
+	border-radius: 4px;
+}
+#item-list_filter.input-group .input-group-btn, #item-list2_filter.input-group .input-group-btn,
+#member-invite-table_filter.input-group .input-group-btn, #member-reinvite-table_filter.input-group .input-group-btn {
+	top: -2px;
+	left: -2px;
+	background: none;
+	color: black;
+}
+@-moz-document url-prefix() {
+  #item-list_filter.input-group .input-group-btn, #item-list2_filter.input-group .input-group-btn,
+  #member-invite-table_filter.input-group .input-group-btn, #member-reinvite-table_filter.input-group .input-group-btn {
+	top: 0px;
+	left: 0px;
+  }
+  #item-list_filter.input-group .form-control, #item-list2_filter.input-group .form-control,
+  #member-invite-table_filter.input-group .input-group-btn, #member-reinvite-table_filter.input-group .input-group-btn {
+	  margin-top: 5px;
+	  margin-right: -3px;
+  }
+}
