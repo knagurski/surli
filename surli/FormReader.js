@@ -1,12 +1,8 @@
 import Question from './Question.js'
 import MockQuestion from './MockQuestion.js'
-import { between, isYes, parseNumber, wordCount } from './Utilities.js'
-
+import { between, isYes, isNo, parseNumber, wordCount, isSkip, parseGender } from './Utilities.js'
+import { speak } from './SurlisVoice.js'
 export default class FormReader {
-
-  constructor () {
-    this.mockQuestions()
-  }
 
   /**
    * @param {HTMLFormElement} form
@@ -16,40 +12,48 @@ export default class FormReader {
     return this
   }
 
-  mockQuestions () {
-    this.questions = [
+  get questions () {
+    const form = this.form
+
+    return [
       new MockQuestion(
         'Out of 5, what is your overall rating?',
-        answer => between(parseNumber(answer), 1, 5) ? true : 'Your answer should be between 1 and 5',
-        function(answer) {
+        answer => !isNaN(parseNumber(answer)) && between(parseNumber(answer), 1, 5) ? true : 'Your answer should be between 1 and 5',
+        answer => {
           this.answer = parseNumber(answer)
-          document.querySelector(`input[name="rating"][value=${this.answer}`).checked = true
+          form.querySelector(`input[name="rating"][value="${this.answer}"`).checked = true
 
           if (this.answer === 1) {
-            return 'Oh, 1 star. Ummm... carrying on'
+            return speak('Oh, 1 star. Ummm... carrying on')
           } else if (this.answer === 2) {
-            return 'Ok, 2 stars. Well, not a great score'
+            return speak('Ok, 2 stars. Well, not a great score')
           } else if (this.answer === 5) {
-            return 'Wow 5 stars! Nice! Can I try it out?'
+            return speak('Wow 5 stars! Nice! Can I try it out?')
           }
 
-          return `Cool, ${this.answer} stars`
+          return speak(`Cool, ${this.answer} stars`)
+        }
+      ),
+      new MockQuestion(
+        'What title do you want to give this review?',
+        answer => wordCount(answer) > 2 ? true : 'What about something longer and more descriptive?',
+        answer => {
+          this.answer = answer
+          form.querySelector('input[name="title"]').value = answer
         }
       ),
       new MockQuestion(
         'So, what did you think of it? Try to be as descriptive as possible',
-        answer => wordCount(answer) > 10 ? true : 'Oh come on, you can do better than that. I need more than 10 words for a review',
-        function(answer) {
+        answer => wordCount(answer) > 5 ? true : 'Oh come on, you can do better than that. I need more than 5 words for a review',
+        answer => {
           this.answer = answer
-          document.querySelector('textarea[name="reviewtext"]').value = answer
-
-          return 'Cool'
+          form.querySelector('textarea[name="reviewtext"]').value = answer
         }
       ),
       new MockQuestion(
         'Would you recommend this product to a friend?',
         answer => isYes(answer) || isNo(answer) ? true : 'Was that a yes or no?',
-        function(answer) {
+        answer => {
           this.answer = isYes(answer)
 
           if (this.answer) {
@@ -59,6 +63,82 @@ export default class FormReader {
             document.querySelector(
               'input[name="isrecommended"][value="false"]').checked = true
           }
+        }
+      ),
+      new MockQuestion(
+        'How would you like your name to appear in the review?',
+        () => true,
+        answer => {
+          this.answer = answer
+          form.querySelector('input[name="usernickname"]').value = answer
+        }
+      ),
+      new MockQuestion(
+        "What's your location?",
+        () => true,
+        answer => {
+          if (isSkip(answer)) {
+            return speak('Ok, skipping this one')
+          }
+
+          this.answer = answer
+          form.querySelector('input[name="userlocation"]').value = answer
+        }
+      ),
+      new MockQuestion(
+        'How old are you?',
+        answer => {
+          return isSkip(answer) || (!isNaN(parseNumber(answer)) && between(parseNumber(answer), 1, 130))
+            ? true
+            : 'Go on, tell me'
+        },
+        async answer => {
+          if (isSkip(answer)) {
+            return speak('Ok, fair enough. Just remember, age is just a number!')
+          }
+
+          this.answer = parseNumber(answer)
+          await speak(`Wow, you don't look a day over ${this.answer - 1}`)
+
+          const target = form.querySelector('select[name="contextdatavalue_Age"]')
+
+          const opt = Array.from(target.options).find(opt => {
+            if (!opt.value) {
+              return false
+            }
+
+            let lower
+            let upper
+
+            if (opt.value.match(/orUnder$/)) {
+              lower = 0
+              upper = /^\d+/.exec(opt.value)[0]
+            } else if (opt.value.match(/orOver$/)) {
+              lower = /^\d+/.exec(opt.value)[0]
+              upper = 130
+            } else {
+              const parts = /^(\d+)to(\d+)$/.exec(opt.value)
+              lower = parts[1]
+              upper = parts[2]
+            }
+
+            return between(this.answer, lower, upper)
+          })
+
+          opt.selected = true
+        }
+      ),
+      new MockQuestion(
+        'What is your gender',
+        answer => isSkip(answer) || parseGender(answer) ? true : "Sorry, are you male or female. It's totally fine if you don't want to answer this",
+        answer => {
+          if (isSkip(answer)) {
+            return speak('No problem. Sorry, I had to ask')
+          }
+
+          this.answer = parseGender(answer)
+
+          form.querySelector(`select[name="contextdatavalue_Gender"] option[value="${this.answer}"]`).selected = true
         }
       )
     ]

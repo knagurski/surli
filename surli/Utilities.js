@@ -2,7 +2,7 @@ export function parseNumber (input) {
   if (typeof input === 'number' ||
     (!isNaN(parseInt(input)) && parseInt(input) !== 0)
   ) {
-    return input
+    return parseInt(input)
   }
 
   switch (input.toLowerCase().trim()) {
@@ -52,6 +52,8 @@ export function parseNumber (input) {
     case 'nine':
       return 9
   }
+
+  return NaN;
 }
 
 export function between (subject, low, high) {
@@ -92,6 +94,9 @@ export function isNo (answer) {
     case 'not a chance':
     case 'hell no':
     case 'negative':
+    case 'fuck off':
+    case 'f*** off':
+    case 'clear off':
       return true
   }
 
@@ -103,4 +108,44 @@ export function pause (seconds) {
     console.log(`pausing for ${seconds} second(s)`)
     setTimeout(resolve, seconds * 1000)
   })
+}
+
+export function isSkip (answer) {
+  if (isNo(answer)) {
+    return true
+  }
+
+  switch (answer.trim().toLowerCase()) {
+    case 'no thanks':
+    case 'skip':
+    case 'next question':
+      return true
+  }
+
+  return false
+}
+
+export function parseGender (answer) {
+  switch (answer.trim().toLowerCase().replace(/^i'm /, '').replace(/^i am /, '').replace(/^a /, '')) {
+    case 'male':
+    case 'man':
+    case 'dude':
+    case 'fella':
+    case 'biological male':
+    case 'm':
+    case 'boy':
+    case 'guy':
+      return 'Male'
+
+    case 'female':
+    case 'woman':
+    case 'dudette':
+    case 'girl':
+    case 'f':
+    case 'lady':
+    case 'biological female':
+      return 'Female'
+  }
+
+  return false
 }
