@@ -5,7 +5,8 @@ export default class MockQuestion {
   constructor (phrase, validator, setAnswer) {
     this.phrase = phrase
     this.validator = validator
-    this.setAnswer = setAnswer
+    this.setAnswer = setAnswer.bind(this)
+    this.answer = ''
   }
 
   async ask () {
@@ -36,5 +37,17 @@ export default class MockQuestion {
     }
 
     return listenLoop()
+  }
+
+  async recap () {
+    const phrase = Array.isArray(this.phrase) ? this.phrase[0] : this.phrase
+
+    await speak(`I asked ${phrase}`)
+
+    if (!this.answer) {
+      await speak('You decided not to answer this one')
+    } else {
+      await speak(`Your answer was ${this.answer}`)
+    }
   }
 }
