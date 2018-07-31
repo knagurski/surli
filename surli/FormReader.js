@@ -1,6 +1,5 @@
-import Question from './Question.js'
 import MockQuestion from './MockQuestion.js'
-import { between, isYes, isNo, parseNumber, wordCount, isSkip, parseGender } from './Utilities.js'
+import { between, isYes, isNo, parseNumber, wordCount, isSkip, parseGender, ucFirst, parseUsage } from './Utilities.js'
 import { speak } from './SurlisVoice.js'
 export default class FormReader {
 
@@ -38,16 +37,16 @@ export default class FormReader {
         'What title do you want to give this review?',
         answer => wordCount(answer) > 2 ? true : 'What about something longer and more descriptive?',
         answer => {
-          this.answer = answer
-          form.querySelector('input[name="title"]').value = answer
+          this.answer = ucFirst(answer)
+          form.querySelector('input[name="title"]').value = this.answer
         }
       ),
       new MockQuestion(
         'So, what did you think of it? Try to be as descriptive as possible',
         answer => wordCount(answer) > 5 ? true : 'Oh come on, you can do better than that. I need more than 5 words for a review',
         answer => {
-          this.answer = answer
-          form.querySelector('textarea[name="reviewtext"]').value = answer
+          this.answer = ucFirst(answer)
+          form.querySelector('textarea[name="reviewtext"]').value = this.answer
         }
       ),
       new MockQuestion(
@@ -69,8 +68,8 @@ export default class FormReader {
         'How would you like your name to appear in the review?',
         () => true,
         answer => {
-          this.answer = answer
-          form.querySelector('input[name="usernickname"]').value = answer
+          this.answer = ucFirst(answer)
+          form.querySelector('input[name="usernickname"]').value = this.answer
         }
       ),
       new MockQuestion(
@@ -82,7 +81,7 @@ export default class FormReader {
           }
 
           this.answer = answer
-          form.querySelector('input[name="userlocation"]').value = answer
+          form.querySelector('input[name="userlocation"]').value = this.answer
         }
       ),
       new MockQuestion(
@@ -139,6 +138,65 @@ export default class FormReader {
           this.answer = parseGender(answer)
 
           form.querySelector(`select[name="contextdatavalue_Gender"] option[value="${this.answer}"]`).selected = true
+        }
+      ),
+      new MockQuestion(
+        'Out of 5, how would you rate the quality of this product?',
+        answer => {
+          return isSkip(answer) || (!isNaN(parseNumber(answer)) && between(parseNumber(answer), 1, 5))
+            ? true
+            : 'Can you give me a number between 1 and 5?'
+        },
+        answer => {
+          if (isSkip(answer)) {
+            return speak('Spoilsport')
+          }
+
+          this.answer = parseNumber(answer)
+
+          form.querySelector(`input[name="rating_Quality"][value="${this.answer}"]`).checked = true
+        }
+      ),
+      new MockQuestion(
+        'Out of 5, how would you rate the value of this product?',
+        answer => {
+          return isSkip(answer) || (!isNaN(parseNumber(answer)) && between(parseNumber(answer), 1, 5))
+            ? true
+            : 'Can you give me a number between 1 and 5?'
+        },
+        answer => {
+          if (isSkip(answer)) {
+            return speak('Fine, be that way')
+          }
+
+          this.answer = parseNumber(answer)
+
+          form.querySelector(`input[name="rating_Value"][value="${this.answer}"]`).checked = true
+        }
+      ),
+      new MockQuestion(
+        [
+          'How often do you use this product?',
+          'Daily',
+          'A few times per week',
+          'Once per month',
+          'Or monthly?'
+        ],
+        answer => {
+          return isSkip(answer) || parseUsage(answer)
+            ? true
+            : 'You can choose daily, a few times per week, once per month or monthly'
+        },
+        answer => {
+          if (isSkip(answer)) {
+            return speak('Fine, be that way')
+          }
+
+          this.answer = parseUsage(answer)
+
+          Array.from(form.querySelector(`select[name="contextdatavalue_HowOftenDoYouUseThisProduct"]`).options).find(opt => {
+            return this.answer === opt.textContent.trim()
+          }).selected = true
         }
       )
     ]

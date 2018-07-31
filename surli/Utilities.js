@@ -1,4 +1,8 @@
 export function parseNumber (input) {
+  if (typeof input === 'string') {
+    input = input.toLowerCase().trim().replace(/ stars?$/, '')
+  }
+
   if (typeof input === 'number' ||
     (!isNaN(parseInt(input)) && parseInt(input) !== 0)
   ) {
@@ -97,6 +101,7 @@ export function isNo (answer) {
     case 'fuck off':
     case 'f*** off':
     case 'clear off':
+    case 'piss off':
       return true
   }
 
@@ -119,6 +124,9 @@ export function isSkip (answer) {
     case 'no thanks':
     case 'skip':
     case 'next question':
+    case 'none of your business':
+    case 'none of your bees wax':
+    case 'none of your beeswax':
       return true
   }
 
@@ -145,6 +153,45 @@ export function parseGender (answer) {
     case 'lady':
     case 'biological female':
       return 'Female'
+  }
+
+  return false
+}
+
+export function ucFirst (answer) {
+  return answer.charAt(0).toUpperCase() + answer.slice(1)
+}
+
+export function parseUsage (answer) {
+  switch (answer.trim().toLowerCase()) {
+    case 'daily':
+    case 'a few times a day':
+    case 'a few times per day':
+      return 'Daily'
+
+    case 'a few times per week':
+    case 'a few times a week':
+      return 'A few times per week'
+
+    case 'weekly':
+    case 'once per week':
+    case 'once a week':
+    case 'one time per week':
+    case 'one time a week':
+    case '1 time a week':
+    case '1 time per week':
+      return 'Once per week'
+
+    case 'monthly':
+    case 'once a month':
+    case 'once per month':
+    case 'a few times a month':
+    case 'a few times per month':
+    case 'one time a month':
+    case 'one time per month':
+    case '1 time a month':
+    case '1 time per month':
+      return 'Monthly'
   }
 
   return false

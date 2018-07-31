@@ -9,7 +9,13 @@ export default class MockQuestion {
   }
 
   async ask () {
-    await speak(this.phrase)
+    if (typeof this.phrase === 'string') {
+      await speak(this.phrase)
+    } else if (Array.isArray(this.phrase)) {
+      for (let x = 0; x < this.phrase.length; x++) {
+        await speak(this.phrase[x])
+      }
+    }
 
     const listenLoop = () => {
       return listen().then(answer => {
