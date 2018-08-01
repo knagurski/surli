@@ -74,7 +74,7 @@ export default class FormReader {
       ),
       new MockQuestion(
         "What's your location?",
-        () => true,
+        answer => !['hear', 'here', 'there', 'their', "they're"].includes(answer.trim().toLowerCase()) ? true : "Very funny, let's try that again",
         function (answer) {
           if (isSkip(answer)) {
             return speak('Ok, skipping this one')
@@ -177,10 +177,7 @@ export default class FormReader {
       new MockQuestion(
         [
           'How often do you use this product?',
-          'Daily',
-          'A few times per week',
-          'Once per week',
-          'Or monthly?'
+          'Daily, a few times per week, once per week or monthly?'
         ],
         answer => {
           return isSkip(answer) || parseUsage(answer)

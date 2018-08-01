@@ -1,5 +1,7 @@
 import { speak } from './SurlisVoice.js'
 import { listen } from './SurlisEars.js'
+import { ask } from './SurlisVoice.js'
+import { getRandom } from './Utilities.js'
 
 export default class MockQuestion {
   constructor (phrase, validator, setAnswer) {
@@ -10,16 +12,7 @@ export default class MockQuestion {
   }
 
   async ask () {
-    if (typeof this.phrase === 'string') {
-      await speak(this.phrase)
-    } else if (Array.isArray(this.phrase)) {
-      for (let x = 0; x < this.phrase.length; x++) {
-        await speak(this.phrase[x])
-      }
-    }
-
-    const listenLoop = () => {
-      return listen().then(answer => {
+    const listenLoop = answer => {
         return new Promise((resolve, reject) => {
           const result = this.validator(answer)
 
@@ -29,25 +22,52 @@ export default class MockQuestion {
             reject(result)
           }
         })
-      })
       .then(this.setAnswer)
       .catch(error => {
-        return speak(error).then(listenLoop)
+        return speak(error)
+          .then(listen)
+          .then(listenLoop)
       })
     }
 
-    return listenLoop()
+    return ask(this.phrase).then(listenLoop)
   }
 
   async recap () {
     const phrase = Array.isArray(this.phrase) ? this.phrase[0] : this.phrase
 
-    await speak(`I asked ${phrase}`)
+    const setups = [
+      `I asked ${phrase}`,
+      `The question was ${phrase}`,
+      `${phrase} was the question`
+    ]
+    await speak(getRandom(setups))
 
     if (!this.answer) {
-      await speak('You decided not to answer this one')
+      const passes = [
+        'You decided not to answer this one',
+        'But you passed',
+        'You were oddly silent on that',
+        'But it was an ecumenical matter',
+        "I couldn't get an answer out of you",
+        '4 O 4 response not found'
+      ]
+      await speak(getRandom(passes))
     } else {
-      await speak(`Your answer was ${this.answer}`)
+      let answer = this.answer
+
+      if (typeof answer === 'boolean') {
+        answer = answer ? 'yes' : 'no'
+      }
+
+      const responses = [
+        `Your answer was ${answer}`,
+        `You replied ${answer}`,
+        `${answer} was your answer`,
+        `You mumbled something like ${answer}`,
+        `I think you said ${answer}`
+      ]
+      await speak(getRandom(responses))
     }
   }
 }

@@ -122,6 +122,7 @@ export function isSkip (answer) {
 
   switch (answer.trim().toLowerCase()) {
     case 'no thanks':
+    case 'pass':
     case 'skip':
     case 'next question':
     case 'none of your business':
@@ -195,4 +196,40 @@ export function parseUsage (answer) {
   }
 
   return false
+}
+
+export function isRequestForJoke (answer) {
+  switch (answer.trim().toLowerCase()) {
+    case 'tell me a joke':
+      return true
+  }
+
+  return false
+}
+
+export function isRequestToRepeat (answer) {
+  switch (answer.trim().toLowerCase()) {
+    case 'can you repeat that':
+    case 'what did you say':
+    case 'what was that':
+    case 'can you repeat the last question':
+    case 'repeat':
+    case 'repeat that':
+    case 'say again':
+      return true
+  }
+
+  return false
+}
+
+export function getRandomIndex (array) {
+  return Math.floor(array.length * Math.random())
+}
+
+export function getRandom(array) {
+  if (array.length === 0) {
+    return
+  } else {
+    return array[getRandomIndex(array)]
+  }
 }

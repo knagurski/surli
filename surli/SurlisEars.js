@@ -1,4 +1,6 @@
-import { speak } from './SurlisVoice.js'
+import { speak, repeatLastQuestion } from './SurlisVoice.js'
+import { isRequestForJoke, isRequestToRepeat } from './Utilities.js'
+import { tellMeAJoke } from './SurlisWit.js'
 
 const recognition = getSpeechRecognition()
 
@@ -50,9 +52,14 @@ export function listen () {
     }
 
     recognition.addEventListener('result', transcribe)
-  })
-}
+  }).then(response => {
+    if (isRequestForJoke(response)) {
+      return tellMeAJoke()
+        .then(repeatLastQuestion)
+    } else if (isRequestToRepeat(response)) {
+      return repeatLastQuestion()
+    }
 
-export function ask (question) {
-  return speak(question).then(listen)
+    return response
+  })
 }

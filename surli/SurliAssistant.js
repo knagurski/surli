@@ -1,7 +1,6 @@
 import FormReader from './FormReader.js'
-import { speak } from './SurlisVoice.js'
+import { speak, ask } from './SurlisVoice.js'
 import { pause, isYes } from './Utilities.js'
-import { listen } from './SurlisEars.js'
 
 export default class SurliAssistant extends HTMLElement {
   /**
@@ -32,12 +31,11 @@ export default class SurliAssistant extends HTMLElement {
    * @param {HTMLFormElement|Element} formElement
    */
   initForm (formElement) {
-    this.questions = this.formReader.setForm(formElement).questions
+    this.questions = this.formReader.setForm(formElement).questions.slice(3)
     this.start()
   }
 
   start () {
-
     this.introduction()
       .then(() => this.askQuestions())
       .then(() => this.confirm())
@@ -78,8 +76,7 @@ export default class SurliAssistant extends HTMLElement {
   }
 
   async confirm() {
-    await speak('Do you want me to go over things?')
-    if (await listen().then(isYes)) {
+    if (await ask('Do you want me to go over things?').then(isYes)) {
       await speak('Ok, from the start...')
 
       for (let x = 0; x < this.questions.length; x++) {

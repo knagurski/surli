@@ -1,5 +1,6 @@
 import { pause } from './Utilities.js'
 import { wordCount } from './Utilities.js'
+import { listen } from './SurlisEars.js'
 
 export function getVoices () {
   return speechSynthesis.getVoices()
@@ -34,6 +35,22 @@ export function speak (phrase) {
   return output.then(() => pause(.2))
 }
 
-export async function say (sentence) {
-  await speak(sentence)
+let lastQuestion
+
+export async function ask (question) {
+  lastQuestion = question
+
+  if (Array.isArray(question)) {
+    for (let x = 0; x < question.length; x++) {
+      await speak(question[x])
+    }
+  } else {
+    await speak(question)
+  }
+
+  return listen()
+}
+
+export function repeatLastQuestion () {
+  return ask(lastQuestion)
 }
