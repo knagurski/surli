@@ -158,7 +158,7 @@ export default class FormReader {
         }
       ),
       new MockQuestion(
-        'Out of 5, how would you rate the value of this product?',
+        'What about value of the product?',
         answer => {
           return isSkip(answer) || (!isNaN(parseNumber(answer)) && between(parseNumber(answer), 1, 5))
             ? true

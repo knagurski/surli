@@ -137,6 +137,7 @@ export function isSkip (answer) {
 export function parseGender (answer) {
   switch (answer.trim().toLowerCase().replace(/^i'm /, '').replace(/^i am /, '').replace(/^a /, '')) {
     case 'male':
+    case 'mail':
     case 'man':
     case 'dude':
     case 'fella':
@@ -216,6 +217,7 @@ export function isRequestToRepeat (answer) {
     case 'repeat':
     case 'repeat that':
     case 'say again':
+    case 'what was the question':
       return true
   }
 
@@ -232,4 +234,73 @@ export function getRandom(array) {
   } else {
     return array[getRandomIndex(array)]
   }
+}
+
+export function isGood (answer) {
+  switch (answer.trim().toLowerCase()) {
+    case 'good':
+    case "that's good":
+    case 'better':
+    case 'much better':
+    case 'perfect':
+      return true
+  }
+
+  return false
+}
+
+export function isAbort (answer) {
+  switch (answer.trim().toLowerCase()) {
+    case 'abort':
+    case 'cancel':
+    case 'never mind':
+      return true
+  }
+
+  return false
+}
+
+export function isRequestToSpeakSlower (answer) {
+  switch (answer.trim().toLowerCase()) {
+    case 'can you speak slower':
+    case 'can you talk slower':
+    case 'you speak too fast':
+    case 'you talk too fast':
+    case "you're speaking too fast":
+    case "you're talking too fast":
+    case 'speak slower':
+    case 'talk slower':
+      return true
+  }
+
+  return false
+}
+
+export function isRequestToSpeakFaster (answer) {
+  switch (answer.trim().toLowerCase()) {
+    case 'can you speak faster':
+    case 'can you talk faster':
+    case 'you speak too slow':
+    case 'you talk too slow':
+    case "you're speaking too slow":
+    case "you're talking too slow":
+    case 'speak faster':
+    case 'talk faster':
+      return true
+  }
+
+  return false
+}
+
+export function isRequestToChangeVoice (answer) {
+  switch (answer.trim().toLowerCase()) {
+    case 'change voice':
+    case 'use a different voice':
+    case 'change your voice':
+    case 'can you change your voice':
+    case 'different voice':
+      return true
+  }
+
+  return false
 }

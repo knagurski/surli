@@ -1,10 +1,26 @@
-import { pause } from './Utilities.js'
-import { wordCount } from './Utilities.js'
+import { isAbort, isGood, isYes, pause, wordCount, getRandom } from './Utilities.js'
 import { listen } from './SurlisEars.js'
 
 export function getVoices () {
-  return speechSynthesis.getVoices()
+  function filterVoices (voices) {
+    const allowedVoices = [
+      'Google UK English Female',
+      'Google UK English Male'
+    ];
+
+    return voices.filter(({voiceURI}) => allowedVoices.includes(voiceURI))
+  }
+
+  return new Promise(resolve => {
+    if (speechSynthesis.getVoices().length > 0) {
+      resolve(filterVoices(speechSynthesis.getVoices()))
+    } else {
+      speechSynthesis.onvoiceschanged = () => resolve(filterVoices(speechSynthesis.getVoices()))
+    }
+  })
 }
+
+getVoices().then(voices => setVoice(voices[0]))
 
 let currentVoice = null
 
@@ -12,9 +28,70 @@ export function setVoice (voice) {
   currentVoice = voice
 }
 
+let speed = 1
+export async function speakSlower () {
+  if (speed === 0.1) {
+    return speak("That's as slow as I can go")
+  }
+
+  const originalSpeed = speed
+  speed = Math.max(speed - 0.5, 0.1)
+
+  return speak('How is this?')
+    .then(listen)
+    .then(answer => {
+      return new Promise((resolve, reject) => {
+        if (isYes(answer) || isGood(answer)) {
+          resolve()
+        } else if (isAbort(answer)) {
+          speed = originalSpeed
+          speak('Ok').then(resolve)
+        } else {
+          reject()
+        }
+      })
+    })
+    .catch(speakSlower)
+}
+
+export async function speakFaster () {
+  if (speed === 3) {
+    return speak("That's as fast as I can go")
+  }
+
+  const originalSpeed = speed
+  speed += 0.5
+
+  return speak('How is this?')
+  .then(listen)
+  .then(answer => {
+    return new Promise((resolve, reject) => {
+      if (isYes(answer) || isGood(answer)) {
+        resolve()
+      } else if (isAbort(answer)) {
+        speed = originalSpeed
+        speak('Ok').then(resolve)
+      } else {
+        reject()
+      }
+    })
+  })
+  .catch(speakFaster)
+}
+
+export async function changeVoice () {
+  const voices = await getVoices()
+
+  setVoice(getRandom(voices.filter(voice => voice !== currentVoice)))
+
+  return speak('There you go')
+}
+
+
 export function speak (phrase) {
   const utterance = new SpeechSynthesisUtterance(phrase)
-//  utterance.voice = currentVoice
+  utterance.rate = speed
+  utterance.voice = currentVoice
 
   const output = new Promise(resolve => {
     console.log('setting handler', phrase)
