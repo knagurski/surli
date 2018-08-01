@@ -3,6 +3,7 @@
 }
 
 .wrapper {
+    font-size: 1.5em;
     position: fixed;
     bottom: 1em;
     right: 1em;
@@ -31,4 +32,8 @@
 .phrase {
     line-height: 1em;
     padding: 1em;
+}
+
+.phrase:empty {
+    display: none;
 }
