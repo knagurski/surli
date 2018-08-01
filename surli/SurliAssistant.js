@@ -1,6 +1,8 @@
 import FormReader from './FormReader.js'
-import { speak, ask } from './SurlisVoice.js'
+import { speak, ask, attachListener as attachSpeakListener } from './SurlisVoice.js'
+import { attachListener as attachListenListener } from './SurlisEars.js'
 import { pause, isYes } from './Utilities.js'
+import SurlisUi from './SurlisUI.js'
 
 export default class SurliAssistant extends HTMLElement {
   /**
@@ -13,7 +15,21 @@ export default class SurliAssistant extends HTMLElement {
   constructor () {
     super()
 
-    this.attachShadow({mode: 'open'})
+    const shadow = this.attachShadow({mode: 'open'})
+
+    this.ui = document.createElement('surli-ui')
+
+    attachListenListener(event => {
+      this.ui.setAttribute('listening', event === 'listen-start')
+    })
+
+    attachSpeakListener((event, phrase) => {
+      if (event === 'speak-start') {
+        this.ui.setAttribute('phrase', phrase)
+      }
+    })
+
+    shadow.appendChild(this.ui)
   }
 
   /**
@@ -31,7 +47,7 @@ export default class SurliAssistant extends HTMLElement {
    * @param {HTMLFormElement|Element} formElement
    */
   initForm (formElement) {
-    this.questions = this.formReader.setForm(formElement).questions.slice(3)
+    this.questions = this.formReader.setForm(formElement).questions
     this.start()
   }
 

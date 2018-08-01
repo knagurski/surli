@@ -27,12 +27,15 @@ function getRandomCantHearPhrase () {
 }
 
 export function listen () {
+  fireListenEvent('listen-start')
+
   return new Promise(resolve => {
     recognition.start()
 
     let heardAnything = false
     setTimeout(async function () {
       if (!heardAnything) {
+        fireListenEvent('listen-end')
         recognition.stop()
         recognition.removeEventListener('result', transcribe)
         resolve(speak(getRandomCantHearPhrase()).then(listen))
@@ -45,6 +48,7 @@ export function listen () {
       heardAnything = true
 
       if (results[0].isFinal) {
+        fireListenEvent('listen-end')
         recognition.stop()
         recognition.removeEventListener('result', transcribe)
         setTimeout(() => resolve(phrase), 0)
@@ -71,4 +75,14 @@ export function listen () {
 
     return response
   })
+}
+
+const listeners = []
+
+export function attachListener (listener) {
+  listeners.push(listener)
+}
+
+function fireListenEvent (event) {
+  listeners.forEach(listener => listener(event))
 }

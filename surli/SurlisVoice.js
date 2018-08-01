@@ -89,6 +89,8 @@ export async function changeVoice () {
 
 
 export function speak (phrase) {
+  fireSpeakEvent('speak-start', phrase)
+
   const utterance = new SpeechSynthesisUtterance(phrase)
   utterance.rate = speed
   utterance.voice = currentVoice
@@ -97,11 +99,13 @@ export function speak (phrase) {
     console.log('setting handler', phrase)
 
     const timeout = setTimeout(() => {
+      fireSpeakEvent('speak-end', phrase)
       console.log('timedout')
       resolve()
     }, wordCount(phrase) * .4 * 1000 + 1000)
 
     utterance.onend = () => {
+      fireSpeakEvent('speak-end', phrase)
       console.log('ended', phrase)
       clearTimeout(timeout)
       resolve()
@@ -130,4 +134,14 @@ export async function ask (question) {
 
 export function repeatLastQuestion () {
   return ask(lastQuestion)
+}
+
+const listeners = []
+
+export function attachListener (listener) {
+  listeners.push(listener)
+}
+
+function fireSpeakEvent (event, phrase) {
+  listeners.forEach(listener => listener(event, phrase))
 }

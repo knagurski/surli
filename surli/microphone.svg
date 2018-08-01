@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<svg width="100%" height="100%" viewBox="0 0 28 53" version="1.1" xmlns="http://www.w3.org/2000/svg"  xml:space="preserve"  style="fill-rule:evenodd;clip-rule:evenodd;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:10;">
+    <style>
+        #microphone {
+            fill:none;
+            stroke:white;
+            stroke-width:3px;
+        }
+    </style>
+    <g id="microphone">
+        <path d="M13.706,33.317c-4.05,0 -7.333,-3.283 -7.333,-7.333l0,-17.4c0,-4.05 3.283,-7.334 7.333,-7.334c4.05,0 7.334,3.284 7.334,7.334l0,17.4c0,4.05 -3.284,7.333 -7.334,7.333Z" />
+        <path d="M26.162,26.461c0,6.879 -5.576,12.456 -12.456,12.456c-6.879,0 -12.456,-5.577 -12.456,-12.456" />
+        <path d="M13.706,38.917l0,12.333" />
+        <path d="M8.307,51.25l10.8,0" />
+    </g>
+</svg>
