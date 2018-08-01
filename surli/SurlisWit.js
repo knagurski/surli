@@ -30,7 +30,36 @@ let jokes = [
   },
   () => speak('An S E O expert walks into a bar, pub, public house, inn, restaurant, club'),
   () => speak('In order to understand recursion you must first understand recursion'),
-  () => speak("Algorithm. Noun. A word used by programmers when they don't want to explain what they did")
+  () => speak("Algorithm. Noun. A word used by programmers when they don't want to explain what they did"),
+  async () => {
+    await speak("What's the difference between chopped beef and pea soup?")
+    await speak("You can chop beef but you can't pee soup")
+  },
+  async () => {
+    await speak("What's blue and smells like red paint?")
+    await speak('Blue paint')
+    await speak('Sorry, that was courtesy of Matthew')
+  },
+  async () => {
+    await speak("What type of cheese doesn't belong to you?")
+    await speak('Nacho cheese')
+  },
+  async () => {
+    await speak('How does a rabbi make his coffee?')
+    await speak('Hebrews it')
+  },
+  () => speak('Thanks for telling me the definition of the word many. It means a lot'),
+  async () => {
+    await speak("What do you call something that's Irish and likes to sit outside?")
+    await speak("Paddy O'Furniture")
+  },
+  async () => {
+    await speak("What's the best thing about Switzerland?")
+    await speak("I don't know but their flag is a big plus")
+    await pause(2)
+    await speak("I'm sorry, that was Laura's joke")
+    await speak("This is why we can't have nice things")
+  }
 ]
 
 export function tellMeAJoke () {
