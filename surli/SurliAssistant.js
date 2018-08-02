@@ -48,7 +48,6 @@ export default class SurliAssistant extends HTMLElement {
    */
   initForm (formElement) {
     this.questions = this.formReader.setForm(formElement).questions
-    this.start()
   }
 
   start () {
@@ -75,12 +74,12 @@ export default class SurliAssistant extends HTMLElement {
     }
   }
 
-  introduction() {
-    return pause(1)
-      .then(() => speak("Hi there, I'm Surli"))
-//      .then(() => speak('I can help you fill in your review'))
-//      .then(() => speak(`Wow, looks like you got to try out some ${this.productName}`))
-//      .then(() => speak('Nice!'))
+  async introduction() {
+    await pause(1)
+    await speak("Hi there, I'm Surli")
+    await speak('I can help you fill in your review')
+    await speak(`Wow, looks like you got to try out some ${this.productName}`)
+    await speak('Nice!')
   }
 
   async askQuestions() {
@@ -88,7 +87,7 @@ export default class SurliAssistant extends HTMLElement {
       await this.questions[x].ask()
     }
 
-    return speak("Well, that's all the questions I have")
+    await speak("Well, that's all the questions I have")
   }
 
   async confirm() {
@@ -98,12 +97,10 @@ export default class SurliAssistant extends HTMLElement {
       for (let x = 0; x < this.questions.length; x++) {
         await this.questions[x].recap()
       }
-
-      await speak('And there ya go')
     }
   }
 
   wrapUp() {
-    return speak("Cool, that's us done. Thanks for the review!")
+    return speak("And that's it! We're all done. Thanks for the review!")
   }
 }

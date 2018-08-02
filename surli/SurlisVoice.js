@@ -94,6 +94,7 @@ export function speak (phrase) {
   const utterance = new SpeechSynthesisUtterance(phrase)
   utterance.rate = speed
   utterance.voice = currentVoice
+  // utterance.volume = 0
 
   const output = new Promise(resolve => {
     console.log('setting handler', phrase)

@@ -154,6 +154,7 @@ export function parseGender (answer) {
     case 'f':
     case 'lady':
     case 'biological female':
+    case 'chick':
       return 'Female'
   }
 
@@ -169,6 +170,8 @@ export function parseUsage (answer) {
     case 'daily':
     case 'a few times a day':
     case 'a few times per day':
+    case 'every day':
+    case 'everyday':
       return 'Daily'
 
     case 'a few times per week':

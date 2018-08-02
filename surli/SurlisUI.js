@@ -20,6 +20,12 @@ export default class SurlisUI extends HTMLElement {
     this.iconEl.classList.add('icon')
     wrapper.appendChild(this.iconEl)
 
+    this.iconEl.addEventListener(
+      'click',
+      () => document.querySelector('surli-assistant').start(),
+      {once: true}
+    )
+
     this.phraseEl = document.createElement('div')
     this.phraseEl.classList.add('phrase')
     wrapper.appendChild(this.phraseEl)
