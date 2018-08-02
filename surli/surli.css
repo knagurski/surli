@@ -23,6 +23,11 @@
     background: rgb(200,200,200) url("./microphone.svg") no-repeat center center;
     background-size: 1.5em 1.5em;
     transition: background-color 1s ease-in-out;
+    cursor: pointer;
+}
+
+.icon:hover {
+    background-color: hotpink;
 }
 
 .icon.icon__listening {
